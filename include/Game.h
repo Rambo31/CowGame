@@ -5,6 +5,10 @@
 #include <SFML/Graphics.hpp>
 
 
+#include"ResourceHolder.h"
+#include"ResourñeIdentifiers.h"
+
+
 class Game : private sf::NonCopyable
 {
 	public:
@@ -14,6 +18,10 @@ class Game : private sf::NonCopyable
 
 	private:
         void                    updateCowAnimation(sf::Time elapsedTime);
+
+        void                    loadTextures();
+        void                    buildScene();
+
 
 		void					processEvents();
 		void					update(sf::Time elapsedTime);
@@ -29,10 +37,9 @@ class Game : private sf::NonCopyable
 		static const sf::Time	TimePerFrame;
 
 
-
+        TextureHolder           mTextureHolder;
 
 		sf::RenderWindow		mWindow;
-		sf::Texture				mTexture;
 		sf::Font				mFont;
 		sf::Text				mStatisticsText;
 		sf::Time				mStatisticsUpdateTime;

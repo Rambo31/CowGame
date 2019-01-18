@@ -7,7 +7,6 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
 : mWindow(sf::VideoMode(640, 480), "SFML Application", sf::Style::Close)
-, mTexture()
 , mPlayer()
 , mFont()
 , mStatisticsText()
@@ -19,14 +18,9 @@ Game::Game()
 , mIsMovingLeft(false)
 , curFrame(0)
 {
-	if (!mTexture.loadFromFile("images/cow.png"))
-	{
-		// Handle loading error
-	}
+    loadTextures();
+    buildScene();
 
-	mPlayer.setTexture(mTexture);
-	mPlayer.setTextureRect(sf::IntRect(0, 0, 128, 128));
-	mPlayer.setPosition(100.f, 100.f);
 
 	mFont.loadFromFile("fonts/Sansation.ttf");
 	mStatisticsText.setFont(mFont);
@@ -156,4 +150,20 @@ void Game::updateCowAnimation(sf::Time elapsedTime)
         mPlayer.setTextureRect(sf::IntRect((int)curFrame * 128, 384, 128, 128));
     }
 
+}
+
+
+void Game::buildScene()
+{
+
+    sf::Texture& cow_texture = mTextureHolder.get(Textures::Cow);
+
+    mPlayer.setTexture(cow_texture);
+	mPlayer.setTextureRect(sf::IntRect(0, 0, 128, 128));
+	mPlayer.setPosition(100.f, 100.f);
+}
+
+void Game::loadTextures()
+{
+    mTextureHolder.load(Textures::Cow, "images/cow.png");
 }
