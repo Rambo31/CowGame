@@ -1,3 +1,6 @@
+#include<cstdlib>
+#include<ctime>
+
 #include "Game.h"
 #include "StringHelpers.h"
 
@@ -8,6 +11,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 Game::Game()
 : mWindow(sf::VideoMode(640, 480), "SFML Application", sf::Style::Close)
 , mPlayer()
+, mFlower()
 , mFont()
 , mStatisticsText()
 , mStatisticsUpdateTime()
@@ -17,7 +21,18 @@ Game::Game()
 , mIsMovingRight(false)
 , mIsMovingLeft(false)
 , curFrame(0)
+, mMap(new std::string[mWindow.getSize().y / 32])
 {
+
+    std::string* my_map = mMap.get();
+    for(int i = 0; i < mWindow.getSize().y / 32; i++)
+    {
+        for(int j = 0; j < mWindow.getSize().x / 32; j++)
+        {
+            my_map[i][j] = '0';
+        }
+    }
+
     loadTextures();
     buildScene();
 
@@ -90,7 +105,25 @@ void Game::update(sf::Time elapsedTime)
 
 void Game::render()
 {
-	mWindow.clear();
+    sf::Color color(52, 171, 24);
+
+	mWindow.clear(color);
+
+    std::string* my_map = mMap.get();
+    for(int i = 0; i < mWindow.getSize().y / 32; i++)
+    {
+        for(int j = 0; j < mWindow.getSize().x / 32; j++)
+        {
+            if(my_map[i][j] == '1')
+            {
+                mFlower.mSprite.setPosition(j * 32, i * 32);
+                mWindow.draw(mFlower.mSprite);
+            }
+        }
+    }
+
+
+
 	mWindow.draw(mPlayer);
 	mWindow.draw(mStatisticsText);
 	mWindow.display();
@@ -161,9 +194,38 @@ void Game::buildScene()
     mPlayer.setTexture(cow_texture);
 	mPlayer.setTextureRect(sf::IntRect(0, 0, 128, 128));
 	mPlayer.setPosition(100.f, 100.f);
+
+
+
+	sf::Texture& flower_tex = mTextureHolder.get(Textures::Flower);
+    mFlower.mSprite.setTexture(flower_tex);
+    mFlower.mSprite.setTextureRect(sf::IntRect(64, 64, 32, 32));
+
+    for(int i = 0; i < 3; i++)
+        generateFlowerPos();
+
 }
 
 void Game::loadTextures()
 {
     mTextureHolder.load(Textures::Cow, "images/cow.png");
+    mTextureHolder.load(Textures::Flower, "images/flower.png");
+}
+
+void Game::generateFlowerPos()
+{
+    static unsigned int seed = 0;
+
+    srand(time(0) + seed++);
+
+
+    int x_pos = rand() % (mWindow.getSize().x / 32);
+    int y_pos = rand() % (mWindow.getSize().y / 32);
+
+    std::string* my_map = mMap.get();
+
+    if(my_map[y_pos][x_pos] != '1')
+    {
+        my_map[y_pos][x_pos] = '1';
+    }
 }

@@ -2,12 +2,21 @@
 #define GAME_H
 
 
-#include <SFML/Graphics.hpp>
+#include<SFML/System/Time.hpp>
 
+#include<SFML/Window/Keyboard.hpp>
+#include<SFML/Window/Event.hpp>
+
+#include<SFML/Graphics/RenderWindow.hpp>
+#include<SFML/Graphics/Text.hpp>
+#include<SFML/Graphics/Font.hpp>
+
+
+#include<string>
 
 #include"ResourceHolder.h"
-#include"ResourñeIdentifiers.h"
-
+#include"ResourceIdentifiers.h"
+#include"Flower.h"
 
 class Game : private sf::NonCopyable
 {
@@ -17,6 +26,7 @@ class Game : private sf::NonCopyable
 
 
 	private:
+	    void           generateFlowerPos();
         void                    updateCowAnimation(sf::Time elapsedTime);
 
         void                    loadTextures();
@@ -45,6 +55,8 @@ class Game : private sf::NonCopyable
 		sf::Time				mStatisticsUpdateTime;
 		std::size_t				mStatisticsNumFrames;
 
+		Flower                  mFlower;
+        std::unique_ptr<std::string> mMap;
 
 		float                   curFrame;
 		sf::Sprite				mPlayer;
