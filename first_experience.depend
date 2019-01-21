@@ -1,0 +1,234 @@
+# depslib dependency file v1.0
+1547819629 source:d:\sfml_projects\first_experience\main.cpp
+	"Game.h"
+
+1548090912 d:\sfml_projects\first_experience\include\game.h
+	<SFML/System/Time.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Font.hpp>
+	<memory>
+	"ResourceHolder.h"
+	"ResourceIdentifiers.h"
+	"Flower.h"
+
+1365229834 d:\sfml-2.0\include\sfml\system\time.hpp
+	<SFML/System/Export.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\system\export.hpp
+	<SFML/Config.hpp>
+
+1365229832 d:\sfml-2.0\include\sfml\config.hpp
+
+1365229834 d:\sfml-2.0\include\sfml\window\keyboard.hpp
+	<SFML/Window/Export.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\window\export.hpp
+	<SFML/Config.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\window\joystick.hpp
+	<SFML/Window/Export.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\window\mouse.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1361396454 d:\sfml-2.0\include\sfml\system\vector2.inl
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\export.hpp
+	<SFML/Config.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\color.hpp
+	<SFML/Graphics/Export.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1361396450 d:\sfml-2.0\include\sfml\graphics\rect.inl
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\view.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Vector2.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\transform.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\blendmode.hpp
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\renderstates.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\primitivetype.hpp
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\vertex.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\system\noncopyable.hpp
+	<SFML/System/Export.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\image.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1365229834 d:\sfml-2.0\include\sfml\window\window.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/String.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\window\contextsettings.hpp
+
+1365229834 d:\sfml-2.0\include\sfml\window\videomode.hpp
+	<SFML/Window/Export.hpp>
+	<vector>
+
+1365229834 d:\sfml-2.0\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\window\windowstyle.hpp
+
+1365229834 d:\sfml-2.0\include\sfml\window\glresource.hpp
+	<SFML/Window/Export.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\system\clock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
+
+1365229834 d:\sfml-2.0\include\sfml\system\string.hpp
+	<SFML/System/Export.hpp>
+	<locale>
+	<string>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\text.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/String.hpp>
+	<string>
+	<vector>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\drawable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\transformable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\font.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<map>
+	<string>
+	<vector>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\glyph.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\texture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/GlResource.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\vertexarray.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<vector>
+
+1548002463 d:\sfml_projects\first_experience\include\resourceholder.h
+	<map>
+	<string>
+	<memory>
+	<stdexcept>
+	<cassert>
+	"ResourceHolder.inl"
+
+1548002463 d:\sfml_projects\first_experience\include\resourceholder.inl
+
+1548002463 d:\sfml_projects\first_experience\include\resourceidentifiers.h
+
+1548002463 d:\sfml_projects\first_experience\include\flower.h
+	<SFML/Graphics/Sprite.hpp>
+
+1365229833 d:\sfml-2.0\include\sfml\graphics\sprite.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1548002463 source:d:\sfml_projects\first_experience\src\flower.cpp
+	"Flower.h"
+
+1548089605 source:d:\sfml_projects\first_experience\src\game.cpp
+	<cstdlib>
+	<ctime>
+	"Game.h"
+	"StringHelpers.h"
+
+1548002463 d:\sfml_projects\first_experience\include\stringhelpers.h
+	<sstream>
+	"StringHelpers.inl"
+
+1548002463 d:\sfml_projects\first_experience\include\stringhelpers.inl
+

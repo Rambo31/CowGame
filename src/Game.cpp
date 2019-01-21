@@ -21,15 +21,14 @@ Game::Game()
 , mIsMovingRight(false)
 , mIsMovingLeft(false)
 , curFrame(0)
-, mMap(new std::string[mWindow.getSize().y / 32])
+, mMap(new sf::String[mWindow.getSize().y / 32])
 {
 
-    std::string* my_map = mMap.get();
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
     {
-        for(int j = 0; j < mWindow.getSize().x / 32; j++)
+        for(std::size_t j = 0; j < mWindow.getSize().x / 32; j++)
         {
-            my_map[i][j] = '0';
+            mMap[i].insert(j, "0");
         }
     }
 
@@ -109,12 +108,11 @@ void Game::render()
 
 	mWindow.clear(color);
 
-    std::string* my_map = mMap.get();
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
     {
         for(int j = 0; j < mWindow.getSize().x / 32; j++)
         {
-            if(my_map[i][j] == '1')
+            if(*(mMap[i].begin() + j) == '1')
             {
                 mFlower.mSprite.setPosition(j * 32, i * 32);
                 mWindow.draw(mFlower.mSprite);
@@ -222,10 +220,14 @@ void Game::generateFlowerPos()
     int x_pos = rand() % (mWindow.getSize().x / 32);
     int y_pos = rand() % (mWindow.getSize().y / 32);
 
-    std::string* my_map = mMap.get();
 
-    if(my_map[y_pos][x_pos] != '1')
+    if(*(mMap[y_pos].begin() + x_pos) != '1')
     {
-        my_map[y_pos][x_pos] = '1';
+        mMap[y_pos].insert(x_pos, "1");
     }
+}
+
+Game::~Game()
+{
+    delete mMap;
 }

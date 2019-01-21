@@ -11,8 +11,7 @@
 #include<SFML/Graphics/Text.hpp>
 #include<SFML/Graphics/Font.hpp>
 
-
-#include<string>
+#include<memory>
 
 #include"ResourceHolder.h"
 #include"ResourceIdentifiers.h"
@@ -22,6 +21,7 @@ class Game : private sf::NonCopyable
 {
 	public:
 								Game();
+                                ~Game();
 		void					run();
 
 
@@ -56,7 +56,7 @@ class Game : private sf::NonCopyable
 		std::size_t				mStatisticsNumFrames;
 
 		Flower                  mFlower;
-        std::unique_ptr<std::string> mMap;
+        sf::String*             mMap;
 
 		float                   curFrame;
 		sf::Sprite				mPlayer;
