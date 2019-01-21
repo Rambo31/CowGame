@@ -51,6 +51,7 @@
 			<Add directory="D:/SFML-2.0/lib" />
 		</Linker>
 		<Unit filename="cb.bmp" />
+		<Unit filename="include/Cow.h" />
 		<Unit filename="include/Flower.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/ResourceHolder.h" />
@@ -59,6 +60,7 @@
 		<Unit filename="include/StringHelpers.h" />
 		<Unit filename="include/StringHelpers.inl" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Cow.cpp" />
 		<Unit filename="src/Flower.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Extensions>

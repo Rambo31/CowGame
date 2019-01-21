@@ -2,17 +2,17 @@
 1547819629 source:d:\sfml_projects\first_experience\main.cpp
 	"Game.h"
 
-1548090912 d:\sfml_projects\first_experience\include\game.h
+1548097240 d:\sfml_projects\first_experience\include\game.h
 	<SFML/System/Time.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Event.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
 	<SFML/Graphics/Text.hpp>
 	<SFML/Graphics/Font.hpp>
-	<memory>
 	"ResourceHolder.h"
 	"ResourceIdentifiers.h"
 	"Flower.h"
+	"Cow.h"
 
 1365229834 d:\sfml-2.0\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
@@ -207,7 +207,7 @@
 
 1548002463 d:\sfml_projects\first_experience\include\resourceidentifiers.h
 
-1548002463 d:\sfml_projects\first_experience\include\flower.h
+1548095762 d:\sfml_projects\first_experience\include\flower.h
 	<SFML/Graphics/Sprite.hpp>
 
 1365229833 d:\sfml-2.0\include\sfml\graphics\sprite.hpp
@@ -220,7 +220,7 @@
 1548002463 source:d:\sfml_projects\first_experience\src\flower.cpp
 	"Flower.h"
 
-1548089605 source:d:\sfml_projects\first_experience\src\game.cpp
+1548100543 source:d:\sfml_projects\first_experience\src\game.cpp
 	<cstdlib>
 	<ctime>
 	"Game.h"
@@ -231,4 +231,10 @@
 	"StringHelpers.inl"
 
 1548002463 d:\sfml_projects\first_experience\include\stringhelpers.inl
+
+1548092302 d:\sfml_projects\first_experience\include\cow.h
+	<SFML/Graphics/Sprite.hpp>
+
+1548092176 source:d:\sfml_projects\first_experience\src\cow.cpp
+	"Cow.h"
 

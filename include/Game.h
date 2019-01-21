@@ -11,11 +11,11 @@
 #include<SFML/Graphics/Text.hpp>
 #include<SFML/Graphics/Font.hpp>
 
-#include<memory>
 
 #include"ResourceHolder.h"
 #include"ResourceIdentifiers.h"
 #include"Flower.h"
+#include"Cow.h"
 
 class Game : private sf::NonCopyable
 {
@@ -26,8 +26,10 @@ class Game : private sf::NonCopyable
 
 
 	private:
-	    void           generateFlowerPos();
+	    void                    generateFlowerPos();
         void                    updateCowAnimation(sf::Time elapsedTime);
+        void                    updateCowCollisionWithEatable();
+        void                    updateCowCollisionWithBarriers(bool isXDir);
 
         void                    loadTextures();
         void                    buildScene();
@@ -59,7 +61,8 @@ class Game : private sf::NonCopyable
         sf::String*             mMap;
 
 		float                   curFrame;
-		sf::Sprite				mPlayer;
+		Cow				        mCow;
+		bool                    mIsGoingToEat;
 		bool					mIsMovingUp;
 		bool					mIsMovingDown;
 		bool					mIsMovingRight;

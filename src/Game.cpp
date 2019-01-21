@@ -10,7 +10,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
 : mWindow(sf::VideoMode(640, 480), "SFML Application", sf::Style::Close)
-, mPlayer()
+, mCow()
 , mFlower()
 , mFont()
 , mStatisticsText()
@@ -20,6 +20,7 @@ Game::Game()
 , mIsMovingDown(false)
 , mIsMovingRight(false)
 , mIsMovingLeft(false)
+, mIsGoingToEat(false)
 , curFrame(0)
 , mMap(new sf::String[mWindow.getSize().y / 32])
 {
@@ -99,7 +100,13 @@ void Game::update(sf::Time elapsedTime)
 
 	updateCowAnimation(elapsedTime);
 
-	mPlayer.move(movement * elapsedTime.asSeconds());
+	updateCowCollisionWithEatable();
+
+	mCow.mSprite.move(movement * elapsedTime.asSeconds());
+
+	updateCowCollisionWithBarriers(true);
+	updateCowCollisionWithBarriers(false);
+
 }
 
 void Game::render()
@@ -122,7 +129,7 @@ void Game::render()
 
 
 
-	mWindow.draw(mPlayer);
+	mWindow.draw(mCow.mSprite);
 	mWindow.draw(mStatisticsText);
 	mWindow.display();
 }
@@ -153,6 +160,8 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 		mIsMovingLeft = isPressed;
 	else if (key == sf::Keyboard::D)
 		mIsMovingRight = isPressed;
+    else if (key == sf::Keyboard::Space)
+        mIsGoingToEat = isPressed;
 }
 
 void Game::updateCowAnimation(sf::Time elapsedTime)
@@ -166,19 +175,19 @@ void Game::updateCowAnimation(sf::Time elapsedTime)
 
     if(mIsMovingUp)
     {
-        mPlayer.setTextureRect(sf::IntRect((int)curFrame * 128, 0, 128, 128));
+        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 0, 128, 128));
     }
     else if(mIsMovingLeft)
     {
-        mPlayer.setTextureRect(sf::IntRect((int)curFrame * 128, 128, 128, 128));
+        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 128, 128, 128));
     }
     else if(mIsMovingDown)
     {
-        mPlayer.setTextureRect(sf::IntRect((int)curFrame * 128, 256, 128, 128));
+        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 256, 128, 128));
     }
     else if(mIsMovingRight)
     {
-        mPlayer.setTextureRect(sf::IntRect((int)curFrame * 128, 384, 128, 128));
+        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 384, 128, 128));
     }
 
 }
@@ -189,9 +198,9 @@ void Game::buildScene()
 
     sf::Texture& cow_texture = mTextureHolder.get(Textures::Cow);
 
-    mPlayer.setTexture(cow_texture);
-	mPlayer.setTextureRect(sf::IntRect(0, 0, 128, 128));
-	mPlayer.setPosition(100.f, 100.f);
+    mCow.mSprite.setTexture(cow_texture);
+	mCow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
+	mCow.mSprite.setPosition(100.f, 100.f);
 
 
 
@@ -223,7 +232,66 @@ void Game::generateFlowerPos()
 
     if(*(mMap[y_pos].begin() + x_pos) != '1')
     {
+        mMap[y_pos].erase(x_pos);
         mMap[y_pos].insert(x_pos, "1");
+    }
+}
+
+void Game::updateCowCollisionWithEatable()
+{
+    if(mIsGoingToEat)
+    {
+        for(int i = mCow.mSprite.getGlobalBounds().left / 32;
+        i < (mCow.mSprite.getGlobalBounds().left + mCow.mSprite.getGlobalBounds().width) / 32;
+        i++)
+        {
+            for(int j = mCow.mSprite.getGlobalBounds().top / 32;
+            j < (mCow.mSprite.getGlobalBounds().top + mCow.mSprite.getGlobalBounds().height) / 32;
+            j++)
+            {
+                if(*(mMap[j].begin() + i) == '1')
+                {
+                    mMap[j].erase(i);
+                    mMap[j].insert(i, '0');
+                }
+            }
+        }
+    }
+}
+
+void Game::updateCowCollisionWithBarriers(bool isXDir)
+{
+    if(isXDir)
+    {
+        if(mCow.mSprite.getGlobalBounds().left < 0)
+        {
+            mCow.mSprite.setPosition(0, mCow.mSprite.getPosition().y);
+        }
+        else if(mCow.mSprite.getGlobalBounds().left +
+                mCow.mSprite.getGlobalBounds().width >
+                mWindow.getSize().x)
+        {
+
+            mCow.mSprite.setPosition(mWindow.getSize().x -
+                mCow.mSprite.getGlobalBounds().width,
+                mCow.mSprite.getPosition().y);
+
+        }
+    }
+    else
+    {
+        if(mCow.mSprite.getGlobalBounds().top < 0)
+        {
+            mCow.mSprite.setPosition(mCow.mSprite.getPosition().x, 0);
+        }
+        else if(mCow.mSprite.getGlobalBounds().top +
+                mCow.mSprite.getGlobalBounds().height >
+                mWindow.getSize().y)
+        {
+            mCow.mSprite.setPosition(mCow.mSprite.getPosition().x,
+                mWindow.getSize().y -
+                mCow.mSprite.getGlobalBounds().height);
+        }
     }
 }
 
