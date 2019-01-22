@@ -98,6 +98,8 @@ void Game::update(sf::Time elapsedTime)
 	if (mIsMovingRight)
 		movement.x += PlayerSpeed;
 
+	updateCowHealthHunger(elapsedTime);
+
 	updateCowAnimation(elapsedTime);
 
 	updateCowCollisionWithEatable();
@@ -114,6 +116,14 @@ void Game::render()
     sf::Color color(52, 171, 24);
 
 	mWindow.clear(color);
+
+	mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 0);
+	mWindow.draw(mCow.mEmptyBar);
+	mWindow.draw(mCow.mHealth);
+
+	mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 32);
+    mWindow.draw(mCow.mEmptyBar);
+    mWindow.draw(mCow.mHunger);
 
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
     {
@@ -202,6 +212,19 @@ void Game::buildScene()
 	mCow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
 	mCow.mSprite.setPosition(100.f, 100.f);
 
+	sf::Texture& health_hunger_tex =  mTextureHolder.get(Textures::HealthHunger);
+	mCow.mEmptyBar.setTexture(health_hunger_tex);
+	mCow.mEmptyBar.setTextureRect(sf::IntRect(0, 0, 128, 32));
+
+
+    mCow.mHealth.setTexture(health_hunger_tex);
+    mCow.mHealth.setTextureRect(sf::IntRect(0, 32, 128, 32));
+    mCow.mHealth.setPosition(mWindow.getSize().x - mCow.mHealth.getGlobalBounds().width, 0);
+
+
+    mCow.mHunger.setTexture(health_hunger_tex);
+    mCow.mHunger.setTextureRect(sf::IntRect(0, 64, 128, 32));
+    mCow.mHunger.setPosition(mWindow.getSize().x - mCow.mHunger.getGlobalBounds().width, 32);
 
 
 	sf::Texture& flower_tex = mTextureHolder.get(Textures::Flower);
@@ -217,6 +240,7 @@ void Game::loadTextures()
 {
     mTextureHolder.load(Textures::Cow, "images/cow.png");
     mTextureHolder.load(Textures::Flower, "images/flower.png");
+    mTextureHolder.load(Textures::HealthHunger, "images/SleekBars.png");
 }
 
 void Game::generateFlowerPos()
@@ -253,6 +277,8 @@ void Game::updateCowCollisionWithEatable()
                 {
                     mMap[j].erase(i);
                     mMap[j].insert(i, '0');
+
+                    mCow.mCurHunger += 30.f;
                 }
             }
         }
@@ -293,6 +319,29 @@ void Game::updateCowCollisionWithBarriers(bool isXDir)
                 mCow.mSprite.getGlobalBounds().height);
         }
     }
+}
+
+void Game::updateCowHealthHunger(sf::Time elapsedTime)
+{
+    if(mCow.mCurHunger >= 0)
+    {
+        mCow.mCurHunger -= 0.008f * elapsedTime.asMilliseconds();
+
+        float hunger_val = mCow.mCurHunger / mCow.mBaseHunger;
+
+        mCow.mHunger.setScale(hunger_val, 1);
+    }
+    else
+    {
+        mCow.mCurHealth -= 0.002f * elapsedTime.asMilliseconds();
+
+        float health_val = mCow.mCurHealth / mCow.mBaseHealth;
+
+        mCow.mHealth.setScale(health_val, 1);
+    }
+
+
+
 }
 
 Game::~Game()

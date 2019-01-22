@@ -30,6 +30,7 @@ class Game : private sf::NonCopyable
         void                    updateCowAnimation(sf::Time elapsedTime);
         void                    updateCowCollisionWithEatable();
         void                    updateCowCollisionWithBarriers(bool isXDir);
+        void                    updateCowHealthHunger(sf::Time elapsedTime);
 
         void                    loadTextures();
         void                    buildScene();
