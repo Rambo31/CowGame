@@ -278,7 +278,14 @@ void Game::updateCowCollisionWithEatable()
                     mMap[j].erase(i);
                     mMap[j].insert(i, '0');
 
-                    mCow.mCurHunger += 10.f;
+                    if(mCow.mCurHunger <= 70.f)
+                    {
+                        mCow.mCurHunger += 30.f;
+                    }
+                    else
+                    {
+                        mCow.mCurHunger = 100.f;
+                    }
 
                     this->generateFlower();
                 }
@@ -333,7 +340,7 @@ void Game::updateCowHealthHunger(sf::Time elapsedTime)
 
         mCow.mHunger.setScale(hunger_val, 1);
     }
-    else
+    else if(mCow.mCurHealth >= 0)
     {
         mCow.mCurHealth -= 0.008f * elapsedTime.asMilliseconds();
 
