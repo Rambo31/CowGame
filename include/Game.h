@@ -2,7 +2,6 @@
 #define GAME_H
 
 
-#include<SFML/System/Time.hpp>
 
 #include<SFML/Window/Keyboard.hpp>
 #include<SFML/Window/Event.hpp>
@@ -27,7 +26,7 @@ class Game : private sf::NonCopyable
 
 	private:
 	    void                    generateFlower();
-        void                    updateCowAnimation(sf::Time elapsedTime);
+
         void                    updateCowCollisionWithEatable();
         void                    updateCowCollisionWithBarriers(bool isXDir);
         void                    updateCowHealthHunger(sf::Time elapsedTime);
@@ -61,13 +60,8 @@ class Game : private sf::NonCopyable
 		Flower                  mFlower;
         sf::String*             mMap;
 
-		float                   curFrame;
 		Cow				        mCow;
-		bool                    mIsGoingToEat;
-		bool					mIsMovingUp;
-		bool					mIsMovingDown;
-		bool					mIsMovingRight;
-		bool					mIsMovingLeft;
+
 };
 
 #endif // GAME_H

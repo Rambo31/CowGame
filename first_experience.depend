@@ -2,8 +2,7 @@
 1547819629 source:d:\sfml_projects\first_experience\main.cpp
 	"Game.h"
 
-1548240193 d:\sfml_projects\first_experience\include\game.h
-	<SFML/System/Time.hpp>
+1548259725 d:\sfml_projects\first_experience\include\game.h
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Event.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
@@ -232,9 +231,10 @@
 
 1548002463 d:\sfml_projects\first_experience\include\stringhelpers.inl
 
-1548187600 d:\sfml_projects\first_experience\include\cow.h
+1548259725 d:\sfml_projects\first_experience\include\cow.h
 	<SFML/Graphics/Sprite.hpp>
+	<SFML/System/Time.hpp>
 
-1548187600 source:d:\sfml_projects\first_experience\src\cow.cpp
+1548259796 source:d:\sfml_projects\first_experience\src\cow.cpp
 	"Cow.h"
 

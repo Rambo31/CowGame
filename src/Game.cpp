@@ -16,12 +16,6 @@ Game::Game()
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
-, mIsMovingUp(false)
-, mIsMovingDown(false)
-, mIsMovingRight(false)
-, mIsMovingLeft(false)
-, mIsGoingToEat(false)
-, curFrame(0)
 , mMap(new sf::String[mWindow.getSize().y / 32])
 {
 
@@ -89,18 +83,18 @@ void Game::processEvents()
 void Game::update(sf::Time elapsedTime)
 {
 	sf::Vector2f movement(0.f, 0.f);
-	if (mIsMovingUp)
+	if (mCow.mIsMovingUp)
 		movement.y -= PlayerSpeed;
-	if (mIsMovingDown)
+	if (mCow.mIsMovingDown)
 		movement.y += PlayerSpeed;
-	if (mIsMovingLeft)
+	if (mCow.mIsMovingLeft)
 		movement.x -= PlayerSpeed;
-	if (mIsMovingRight)
+	if (mCow.mIsMovingRight)
 		movement.x += PlayerSpeed;
 
 	updateCowHealthHunger(elapsedTime);
 
-	updateCowAnimation(elapsedTime);
+	mCow.updateCowAnimation(elapsedTime);
 
 	updateCowCollisionWithEatable();
 
@@ -163,44 +157,17 @@ void Game::updateStatistics(sf::Time elapsedTime)
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 {
 	if (key == sf::Keyboard::W)
-		mIsMovingUp = isPressed;
+		mCow.mIsMovingUp = isPressed;
 	else if (key == sf::Keyboard::S)
-		mIsMovingDown = isPressed;
+		mCow.mIsMovingDown = isPressed;
 	else if (key == sf::Keyboard::A)
-		mIsMovingLeft = isPressed;
+		mCow.mIsMovingLeft = isPressed;
 	else if (key == sf::Keyboard::D)
-		mIsMovingRight = isPressed;
+		mCow.mIsMovingRight = isPressed;
     else if (key == sf::Keyboard::Space)
-        mIsGoingToEat = isPressed;
+        mCow.mIsGoingToEat = isPressed;
 }
 
-void Game::updateCowAnimation(sf::Time elapsedTime)
-{
-    curFrame = curFrame + elapsedTime.asMilliseconds() * 0.01f;
-
-    if((int)curFrame > 3)
-    {
-        curFrame-= 3;
-    }
-
-    if(mIsMovingUp)
-    {
-        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 0, 128, 128));
-    }
-    else if(mIsMovingLeft)
-    {
-        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 128, 128, 128));
-    }
-    else if(mIsMovingDown)
-    {
-        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 256, 128, 128));
-    }
-    else if(mIsMovingRight)
-    {
-        mCow.mSprite.setTextureRect(sf::IntRect((int)curFrame * 128, 384, 128, 128));
-    }
-
-}
 
 
 void Game::buildScene()
@@ -263,7 +230,7 @@ void Game::generateFlower()
 
 void Game::updateCowCollisionWithEatable()
 {
-    if(mIsGoingToEat)
+    if(mCow.mIsGoingToEat)
     {
         for(int i = mCow.mSprite.getGlobalBounds().left / 32;
         i < (mCow.mSprite.getGlobalBounds().left + mCow.mSprite.getGlobalBounds().width) / 32;
