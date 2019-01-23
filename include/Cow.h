@@ -10,6 +10,11 @@ class Cow
     public:
                             Cow();
     void                    updateCowAnimation(sf::Time elapsedTime);
+    void                    updateCowCollisionWithBarriers(bool isXDir, sf::IntRect bounds);
+    void                    updateCowHealthHunger(sf::Time elapsedTime);
+
+    void                    update(sf::Time elapsedTime, sf::IntRect bounds);
+
     public:
     sf::Sprite              mSprite;
 

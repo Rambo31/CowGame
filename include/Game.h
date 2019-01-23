@@ -25,14 +25,12 @@ class Game : private sf::NonCopyable
 
 
 	private:
-	    void                    generateFlower();
+	    void                    generateFlower(); //world
+        bool                    updateCowCollisionWithEatable(); //world or cow
 
-        void                    updateCowCollisionWithEatable();
-        void                    updateCowCollisionWithBarriers(bool isXDir);
-        void                    updateCowHealthHunger(sf::Time elapsedTime);
 
-        void                    loadTextures();
-        void                    buildScene();
+        void                    loadTextures(); //world
+        void                    buildScene();//world
 
 
 		void					processEvents();
@@ -57,10 +55,10 @@ class Game : private sf::NonCopyable
 		sf::Time				mStatisticsUpdateTime;
 		std::size_t				mStatisticsNumFrames;
 
-		Flower                  mFlower;
-        sf::String*             mMap;
+		Flower                  mFlower; //world
+        sf::String*             mMap;//world
 
-		Cow				        mCow;
+		Cow				        mCow; //world
 
 };
 

@@ -9,7 +9,7 @@ const float Game::PlayerSpeed = 100.f;
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
-: mWindow(sf::VideoMode(640, 480), "SFML Application", sf::Style::Close)
+: mWindow(sf::VideoMode(800, 576), "SFML Application", sf::Style::Default)
 , mCow()
 , mFlower()
 , mFont()
@@ -92,17 +92,18 @@ void Game::update(sf::Time elapsedTime)
 	if (mCow.mIsMovingRight)
 		movement.x += PlayerSpeed;
 
-	updateCowHealthHunger(elapsedTime);
 
-	mCow.updateCowAnimation(elapsedTime);
 
-	updateCowCollisionWithEatable();
+	if(updateCowCollisionWithEatable())
+    {
+        this->generateFlower();
+    }
 
-	mCow.mSprite.move(movement * elapsedTime.asSeconds());
+    mCow.mSprite.move(movement * elapsedTime.asSeconds());
 
-	updateCowCollisionWithBarriers(true);
-	updateCowCollisionWithBarriers(false);
+	sf::IntRect worldBounds(0, 0, mWindow.getSize().x, mWindow.getSize().y);
 
+	mCow.update(elapsedTime, worldBounds);
 }
 
 void Game::render()
@@ -228,7 +229,7 @@ void Game::generateFlower()
     }
 }
 
-void Game::updateCowCollisionWithEatable()
+bool Game::updateCowCollisionWithEatable()
 {
     if(mCow.mIsGoingToEat)
     {
@@ -253,72 +254,19 @@ void Game::updateCowCollisionWithEatable()
                     {
                         mCow.mCurHunger = 100.f;
                     }
-
-                    this->generateFlower();
+                    return true;
                 }
             }
         }
-    }
-}
 
-void Game::updateCowCollisionWithBarriers(bool isXDir)
-{
-    if(isXDir)
-    {
-        if(mCow.mSprite.getGlobalBounds().left < 0)
-        {
-            mCow.mSprite.setPosition(0, mCow.mSprite.getPosition().y);
-        }
-        else if(mCow.mSprite.getGlobalBounds().left +
-                mCow.mSprite.getGlobalBounds().width >
-                mWindow.getSize().x)
-        {
-
-            mCow.mSprite.setPosition(mWindow.getSize().x -
-                mCow.mSprite.getGlobalBounds().width,
-                mCow.mSprite.getPosition().y);
-
-        }
+        return false;
     }
     else
     {
-        if(mCow.mSprite.getGlobalBounds().top < 0)
-        {
-            mCow.mSprite.setPosition(mCow.mSprite.getPosition().x, 0);
-        }
-        else if(mCow.mSprite.getGlobalBounds().top +
-                mCow.mSprite.getGlobalBounds().height >
-                mWindow.getSize().y)
-        {
-            mCow.mSprite.setPosition(mCow.mSprite.getPosition().x,
-                mWindow.getSize().y -
-                mCow.mSprite.getGlobalBounds().height);
-        }
+        return false;
     }
 }
 
-void Game::updateCowHealthHunger(sf::Time elapsedTime)
-{
-    if(mCow.mCurHunger >= 0)
-    {
-        mCow.mCurHunger -= 0.015f * elapsedTime.asMilliseconds();
-
-        float hunger_val = mCow.mCurHunger / mCow.mBaseHunger;
-
-        mCow.mHunger.setScale(hunger_val, 1);
-    }
-    else if(mCow.mCurHealth >= 0)
-    {
-        mCow.mCurHealth -= 0.008f * elapsedTime.asMilliseconds();
-
-        float health_val = mCow.mCurHealth / mCow.mBaseHealth;
-
-        mCow.mHealth.setScale(health_val, 1);
-    }
-
-
-
-}
 
 Game::~Game()
 {
