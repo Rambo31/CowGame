@@ -232,7 +232,7 @@ void Game::buildScene()
     mFlower.mSprite.setTextureRect(sf::IntRect(64, 64, 32, 32));
 
     for(int i = 0; i < 3; i++)
-        generateFlowerPos();
+        generateFlower();
 
 }
 
@@ -243,7 +243,7 @@ void Game::loadTextures()
     mTextureHolder.load(Textures::HealthHunger, "images/SleekBars.png");
 }
 
-void Game::generateFlowerPos()
+void Game::generateFlower()
 {
     static unsigned int seed = 0;
 
@@ -278,7 +278,9 @@ void Game::updateCowCollisionWithEatable()
                     mMap[j].erase(i);
                     mMap[j].insert(i, '0');
 
-                    mCow.mCurHunger += 30.f;
+                    mCow.mCurHunger += 10.f;
+
+                    this->generateFlower();
                 }
             }
         }
@@ -325,7 +327,7 @@ void Game::updateCowHealthHunger(sf::Time elapsedTime)
 {
     if(mCow.mCurHunger >= 0)
     {
-        mCow.mCurHunger -= 0.008f * elapsedTime.asMilliseconds();
+        mCow.mCurHunger -= 0.015f * elapsedTime.asMilliseconds();
 
         float hunger_val = mCow.mCurHunger / mCow.mBaseHunger;
 
@@ -333,7 +335,7 @@ void Game::updateCowHealthHunger(sf::Time elapsedTime)
     }
     else
     {
-        mCow.mCurHealth -= 0.002f * elapsedTime.asMilliseconds();
+        mCow.mCurHealth -= 0.008f * elapsedTime.asMilliseconds();
 
         float health_val = mCow.mCurHealth / mCow.mBaseHealth;
 

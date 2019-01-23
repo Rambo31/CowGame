@@ -26,7 +26,7 @@ class Game : private sf::NonCopyable
 
 
 	private:
-	    void                    generateFlowerPos();
+	    void                    generateFlower();
         void                    updateCowAnimation(sf::Time elapsedTime);
         void                    updateCowCollisionWithEatable();
         void                    updateCowCollisionWithBarriers(bool isXDir);
