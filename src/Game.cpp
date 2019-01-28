@@ -1,6 +1,8 @@
 #include<cstdlib>
 #include<ctime>
 
+#include<SFML/Graphics/RectangleShape.hpp>
+
 #include "Game.h"
 #include "StringHelpers.h"
 
@@ -112,6 +114,10 @@ void Game::render()
 
 	mWindow.clear(color);
 
+	sf::RectangleShape top_rect(sf::Vector2f(mWindow.getSize().x, 64));
+	top_rect.setFillColor(sf::Color::Black);
+	mWindow.draw(top_rect);
+
 	mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 0);
 	mWindow.draw(mCow.mEmptyBar);
 	mWindow.draw(mCow.mHealth);
@@ -219,7 +225,7 @@ void Game::generateFlower()
 
 
     int x_pos = rand() % (mWindow.getSize().x / 32);
-    int y_pos = rand() % (mWindow.getSize().y / 32);
+    int y_pos = 2 + rand() % (mWindow.getSize().y / 32 - 2);
 
 
     if(*(mMap[y_pos].begin() + x_pos) != '1')

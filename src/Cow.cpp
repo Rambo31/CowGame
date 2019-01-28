@@ -69,9 +69,9 @@ void Cow::updateCowCollisionWithBarriers(bool isXDir, sf::IntRect bounds)
     }
     else
     {
-        if(mSprite.getGlobalBounds().top < 0)
+        if(mSprite.getGlobalBounds().top < 32)
         {
-            mSprite.setPosition(mSprite.getPosition().x, 0);
+            mSprite.setPosition(mSprite.getPosition().x, 32);
         }
         else if(mSprite.getGlobalBounds().top +
                 mSprite.getGlobalBounds().height >
@@ -115,4 +115,9 @@ void Cow::update(sf::Time elapsedTime, sf::IntRect bounds)
     updateCowCollisionWithBarriers(true, bounds);
 
 	updateCowCollisionWithBarriers(false, bounds);
+}
+
+void Cow::aiBehavior()
+{
+
 }

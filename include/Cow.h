@@ -14,6 +14,7 @@ class Cow
     void                    updateCowHealthHunger(sf::Time elapsedTime);
 
     void                    update(sf::Time elapsedTime, sf::IntRect bounds);
+    void                    aiBehavior();
 
     public:
     sf::Sprite              mSprite;
