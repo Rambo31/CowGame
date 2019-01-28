@@ -4,17 +4,27 @@
 #include<SFML/Graphics/Sprite.hpp>
 
 #include<SFML/System/Time.hpp>
+#include<SFML/System/String.hpp>
 
 class Cow
 {
     public:
-                            Cow();
+        enum CowType
+        {
+            Player,
+            AI
+        };
+
+    public:
+                            Cow(CowType type);
+    void                    updateCowMovement(sf::Time elapsedTime);
+    void                    updateCowCollisionWithEatable(sf::String* my_map);
     void                    updateCowAnimation(sf::Time elapsedTime);
     void                    updateCowCollisionWithBarriers(bool isXDir, sf::IntRect bounds);
     void                    updateCowHealthHunger(sf::Time elapsedTime);
 
-    void                    update(sf::Time elapsedTime, sf::IntRect bounds);
-    void                    aiBehavior();
+    void                    update(sf::Time elapsedTime, sf::String* my_map, sf::IntRect bounds);
+    void                    aiBehavior(sf::Time elapsed_time);
 
     public:
     sf::Sprite              mSprite;
@@ -37,6 +47,10 @@ class Cow
     bool					mIsMovingDown;
     bool					mIsMovingRight;
     bool					mIsMovingLeft;
+
+    sf::Time                mTime;
+    CowType                 mType;
+
 };
 
 #endif // COW_H

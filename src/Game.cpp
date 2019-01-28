@@ -12,8 +12,11 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
 : mWindow(sf::VideoMode(800, 576), "SFML Application", sf::Style::Default)
-, mCow()
+, mWorldBounds(0, 0, mWindow.getSize().x, mWindow.getSize().y)
+, mCow(Cow::CowType::Player)
+, mAICow(Cow::CowType::AI)
 , mFlower()
+, mFlowerGenTime()
 , mFont()
 , mStatisticsText()
 , mStatisticsUpdateTime()
@@ -84,28 +87,17 @@ void Game::processEvents()
 
 void Game::update(sf::Time elapsedTime)
 {
-	sf::Vector2f movement(0.f, 0.f);
-	if (mCow.mIsMovingUp)
-		movement.y -= PlayerSpeed;
-	if (mCow.mIsMovingDown)
-		movement.y += PlayerSpeed;
-	if (mCow.mIsMovingLeft)
-		movement.x -= PlayerSpeed;
-	if (mCow.mIsMovingRight)
-		movement.x += PlayerSpeed;
+    mFlowerGenTime += elapsedTime;
 
-
-
-	if(updateCowCollisionWithEatable())
+    if(mFlowerGenTime.asSeconds() > 5.f)
     {
-        this->generateFlower();
+        generateFlower();
+        mFlowerGenTime -= sf::seconds(5.f);
     }
 
-    mCow.mSprite.move(movement * elapsedTime.asSeconds());
+	mCow.update(elapsedTime, mMap, mWorldBounds);
 
-	sf::IntRect worldBounds(0, 0, mWindow.getSize().x, mWindow.getSize().y);
-
-	mCow.update(elapsedTime, worldBounds);
+	mAICow.update(elapsedTime, mMap, mWorldBounds);
 }
 
 void Game::render()
@@ -138,7 +130,7 @@ void Game::render()
         }
     }
 
-
+    mWindow.draw(mAICow.mSprite);
 
 	mWindow.draw(mCow.mSprite);
 	mWindow.draw(mStatisticsText);
@@ -185,6 +177,11 @@ void Game::buildScene()
     mCow.mSprite.setTexture(cow_texture);
 	mCow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
 	mCow.mSprite.setPosition(100.f, 100.f);
+
+    mAICow.mSprite.setTexture(cow_texture);
+	mAICow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
+	mAICow.mSprite.setPosition(200.f, 200.f);
+	mAICow.mSprite.setColor(sf::Color(237, 206, 206));
 
 	sf::Texture& health_hunger_tex =  mTextureHolder.get(Textures::HealthHunger);
 	mCow.mEmptyBar.setTexture(health_hunger_tex);
@@ -235,43 +232,6 @@ void Game::generateFlower()
     }
 }
 
-bool Game::updateCowCollisionWithEatable()
-{
-    if(mCow.mIsGoingToEat)
-    {
-        for(int i = mCow.mSprite.getGlobalBounds().left / 32;
-        i < (mCow.mSprite.getGlobalBounds().left + mCow.mSprite.getGlobalBounds().width) / 32;
-        i++)
-        {
-            for(int j = mCow.mSprite.getGlobalBounds().top / 32;
-            j < (mCow.mSprite.getGlobalBounds().top + mCow.mSprite.getGlobalBounds().height) / 32;
-            j++)
-            {
-                if(*(mMap[j].begin() + i) == '1')
-                {
-                    mMap[j].erase(i);
-                    mMap[j].insert(i, '0');
-
-                    if(mCow.mCurHunger <= 70.f)
-                    {
-                        mCow.mCurHunger += 30.f;
-                    }
-                    else
-                    {
-                        mCow.mCurHunger = 100.f;
-                    }
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 
 Game::~Game()

@@ -1,6 +1,6 @@
 #include "Cow.h"
 
-Cow::Cow()
+Cow::Cow(CowType type)
 : mBaseHealth(100.f)
 , mCurHealth(100.f)
 , mBaseHunger(100.f)
@@ -15,6 +15,8 @@ Cow::Cow()
 , mIsMovingLeft(false)
 , mIsGoingToEat(false)
 , curFrame(0)
+, mTime()
+, mType(type)
 {
     //ctor
 }
@@ -106,8 +108,17 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
 }
 
 
-void Cow::update(sf::Time elapsedTime, sf::IntRect bounds)
+void Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bounds)
 {
+    if(mType == CowType::AI)
+    {
+        aiBehavior(elapsedTime);
+    }
+
+    updateCowCollisionWithEatable(my_map);
+
+    updateCowMovement(elapsedTime);
+
     updateCowHealthHunger(elapsedTime);
 
 	updateCowAnimation(elapsedTime);
@@ -117,7 +128,76 @@ void Cow::update(sf::Time elapsedTime, sf::IntRect bounds)
 	updateCowCollisionWithBarriers(false, bounds);
 }
 
-void Cow::aiBehavior()
+void Cow::aiBehavior(sf::Time elapsedTime)
 {
+    mTime += elapsedTime;
 
+
+    if(mTime.asSeconds() > 4.f)
+    {
+        mTime -= sf::seconds(4.f);
+    }
+
+    if(mTime.asSeconds() < 2.f)
+    {
+        mIsMovingRight = true;
+        mIsMovingLeft = false;
+    }
+    else if (mTime.asSeconds() < 4.f)
+    {
+        mIsMovingLeft = true;
+        mIsMovingRight = false;
+    }
+
+}
+
+void Cow::updateCowCollisionWithEatable(sf::String* mMap)
+{
+    if(mIsGoingToEat)
+    {
+        for(int i = mSprite.getGlobalBounds().left / 32;
+        i < (mSprite.getGlobalBounds().left + mSprite.getGlobalBounds().width) / 32;
+        i++)
+        {
+            for(int j = mSprite.getGlobalBounds().top / 32;
+            j < (mSprite.getGlobalBounds().top + mSprite.getGlobalBounds().height) / 32;
+            j++)
+            {
+                if(*(mMap[j].begin() + i) == '1')
+                {
+                    mMap[j].erase(i);
+                    mMap[j].insert(i, '0');
+
+                    if(mCurHunger <= 70.f)
+                    {
+                        mCurHunger += 30.f;
+                    }
+                    else
+                    {
+                        mCurHunger = 100.f;
+                    }
+                }
+            }
+        }
+    }
+}
+
+void Cow::updateCowMovement(sf::Time elapsedTime)
+{
+    float PlayerSpeed = 100.f;
+
+    sf::Vector2f movement(0.f, 0.f);
+
+
+
+	if (mIsMovingUp)
+		movement.y -= PlayerSpeed;
+	if (mIsMovingDown)
+		movement.y += PlayerSpeed;
+	if (mIsMovingLeft)
+		movement.x -= PlayerSpeed;
+	if (mIsMovingRight)
+		movement.x += PlayerSpeed;
+
+    mSprite.move(movement * elapsedTime.asSeconds());
 }

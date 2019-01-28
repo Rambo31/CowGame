@@ -26,7 +26,6 @@ class Game : private sf::NonCopyable
 
 	private:
 	    void                    generateFlower(); //world
-        bool                    updateCowCollisionWithEatable(); //world or cow
 
 
         void                    loadTextures(); //world
@@ -56,9 +55,13 @@ class Game : private sf::NonCopyable
 		std::size_t				mStatisticsNumFrames;
 
 		Flower                  mFlower; //world
+		sf::Time                mFlowerGenTime;
+
         sf::String*             mMap;//world
+        sf::IntRect             mWorldBounds;
 
 		Cow				        mCow; //world
+		Cow                     mAICow;
 
 };
 
