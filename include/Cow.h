@@ -24,7 +24,7 @@ class Cow
     void                    updateCowHealthHunger(sf::Time elapsedTime);
 
     unsigned int            update(sf::Time elapsedTime, sf::String* my_map, sf::IntRect bounds);
-    void                    aiBehavior(sf::Time elapsed_time);
+    void                    aiBehavior_1(sf::Time elapsed_time);
 
     public:
     sf::Sprite              mSprite;

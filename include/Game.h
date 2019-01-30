@@ -60,6 +60,7 @@ class Game : private sf::NonCopyable
 		Flower                  mFlower; //world
 		sf::Time                mFlowerGenTime;
 
+        sf::Sprite              mWall;
         sf::String*             mMap;//world
         sf::IntRect             mWorldBounds;
 

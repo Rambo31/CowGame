@@ -11,7 +11,7 @@ const float Game::PlayerSpeed = 100.f;
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
-: mWindow(sf::VideoMode(800, 576), "SFML Application", sf::Style::Default)
+: mWindow(sf::VideoMode().getFullscreenModes()[0], "SFML Application", sf::Style::Fullscreen)
 , mWorldBounds(0, 0, mWindow.getSize().x, mWindow.getSize().y)
 , mCow(Cow::CowType::Player)
 , mAICow(Cow::CowType::AI)
@@ -24,13 +24,22 @@ Game::Game()
 , mMap(new sf::String[mWindow.getSize().y / 32])
 , mScoreText()
 , mScore(0)
+, mWall()
 {
 
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
     {
         for(std::size_t j = 0; j < mWindow.getSize().x / 32; j++)
         {
-            mMap[i].insert(j, "0");
+            if(i == 1  || i == mWindow.getSize().y / 32 - 1)
+            {
+                mMap[i].insert(j, "2");
+            }
+            else
+            {
+                mMap[i].insert(j, "0");
+            }
+
         }
     }
 
@@ -40,11 +49,11 @@ Game::Game()
 
 	mFont.loadFromFile("fonts/Sansation.ttf");
 	mStatisticsText.setFont(mFont);
-	mStatisticsText.setPosition(5.f, 5.f);
+	mStatisticsText.setPosition(0.f, 0.f);
 	mStatisticsText.setCharacterSize(13);
 
 	mScoreText.setFont(mFont);
-	mScoreText.setPosition(mWindow.getSize().x / 2, 16);
+	mScoreText.setPosition(mWindow.getSize().x / 2, 0);
 	mScoreText.setCharacterSize(15);
 }
 
@@ -116,13 +125,6 @@ void Game::render()
 	top_rect.setFillColor(sf::Color::Black);
 	mWindow.draw(top_rect);
 
-	mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 0);
-	mWindow.draw(mCow.mEmptyBar);
-	mWindow.draw(mCow.mHealth);
-
-	mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 32);
-    mWindow.draw(mCow.mEmptyBar);
-    mWindow.draw(mCow.mHunger);
 
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
     {
@@ -133,8 +135,21 @@ void Game::render()
                 mFlower.mSprite.setPosition(j * 32, i * 32);
                 mWindow.draw(mFlower.mSprite);
             }
+            else if(*(mMap[i].begin() + j) == '2')
+            {
+                mWall.setPosition(j * 32, i * 32);
+                mWindow.draw(mWall);
+            }
         }
     }
+
+    mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 0);
+	mWindow.draw(mCow.mEmptyBar);
+	mWindow.draw(mCow.mHealth);
+
+	mCow.mEmptyBar.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 32);
+    mWindow.draw(mCow.mEmptyBar);
+    mWindow.draw(mCow.mHunger);
 
     mWindow.draw(mAICow.mSprite);
 
@@ -191,7 +206,7 @@ void Game::buildScene()
 
     mAICow.mSprite.setTexture(cow_texture);
 	mAICow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
-	mAICow.mSprite.setPosition(200.f, 200.f);
+	mAICow.mSprite.setPosition(0, 64.f);
 	mAICow.mSprite.setColor(sf::Color(237, 206, 206));
 
 	sf::Texture& health_hunger_tex =  mTextureHolder.get(Textures::HealthHunger);
@@ -216,6 +231,11 @@ void Game::buildScene()
     for(int i = 0; i < 3; i++)
         generateFlower();
 
+    sf::Texture& walls = mTextureHolder.get(Textures::Walls);
+    mWall.setTexture(walls);
+    mWall.setTextureRect(sf::IntRect(192, 128, 32, 32));
+
+
 }
 
 void Game::loadTextures()
@@ -223,6 +243,7 @@ void Game::loadTextures()
     mTextureHolder.load(Textures::Cow, "images/cow.png");
     mTextureHolder.load(Textures::Flower, "images/flower.png");
     mTextureHolder.load(Textures::HealthHunger, "images/SleekBars.png");
+    mTextureHolder.load(Textures::Walls, "images/walls.png");
 }
 
 void Game::generateFlower()
@@ -236,7 +257,7 @@ void Game::generateFlower()
     int y_pos = 2 + rand() % (mWindow.getSize().y / 32 - 2);
 
 
-    if(*(mMap[y_pos].begin() + x_pos) != '1')
+    if(*(mMap[y_pos].begin() + x_pos) != '1' && *(mMap[y_pos].begin() + x_pos) != '2')
     {
         mMap[y_pos].erase(x_pos);
         mMap[y_pos].insert(x_pos, "1");

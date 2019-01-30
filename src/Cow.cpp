@@ -77,11 +77,10 @@ void Cow::updateCowCollisionWithBarriers(bool isXDir, sf::IntRect bounds)
         }
         else if(mSprite.getGlobalBounds().top +
                 mSprite.getGlobalBounds().height >
-                bounds.height)
+                bounds.height - 32)
         {
             mSprite.setPosition(mSprite.getPosition().x,
-                bounds.height -
-                mSprite.getGlobalBounds().height);
+                bounds.height - 32 - mSprite.getGlobalBounds().height);
         }
     }
 }
@@ -112,7 +111,7 @@ unsigned int Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bo
 {
     if(mType == CowType::AI)
     {
-        aiBehavior(elapsedTime);
+        aiBehavior_1(elapsedTime);
     }
 
     unsigned int score_value;
@@ -132,25 +131,51 @@ unsigned int Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bo
 	return score_value;
 }
 
-void Cow::aiBehavior(sf::Time elapsedTime)
+void Cow::aiBehavior_1(sf::Time elapsedTime)
 {
     mTime += elapsedTime;
 
 
-    if(mTime.asSeconds() > 4.f)
+    if(mTime.asSeconds() > 25.f)
     {
-        mTime -= sf::seconds(4.f);
+        mTime -= sf::seconds(25.f);
     }
 
-    if(mTime.asSeconds() < 2.f)
+    if(mTime.asSeconds() < 3.5f)
     {
-        mIsMovingRight = true;
         mIsMovingLeft = false;
+        mIsMovingDown = true;
     }
-    else if (mTime.asSeconds() < 4.f)
+    else if (mTime.asSeconds() < 6.f)
     {
-        mIsMovingLeft = true;
+        mIsMovingDown = false;
+        mIsMovingRight = true;
+    }
+    else if(mTime.asSeconds() < 9.5f)
+    {
+        mIsMovingUp = true;
+    }
+    else if(mTime.asSeconds() < 12.5f)
+    {
+        mIsMovingUp = false;
+    }
+    else if(mTime.asSeconds() < 16.f)
+    {
         mIsMovingRight = false;
+        mIsMovingDown = true;
+    }
+    else if(mTime.asSeconds() < 18.5f)
+    {
+        mIsMovingDown = false;
+        mIsMovingLeft = true;
+    }
+    else if(mTime.asSeconds() < 22.f)
+    {
+        mIsMovingUp = true;
+    }
+    else if(mTime.asSeconds() < 25.f)
+    {
+        mIsMovingUp = false;
     }
 
 }
