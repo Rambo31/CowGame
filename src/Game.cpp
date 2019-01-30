@@ -22,6 +22,8 @@ Game::Game()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
 , mMap(new sf::String[mWindow.getSize().y / 32])
+, mScoreText()
+, mScore(0)
 {
 
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
@@ -40,6 +42,10 @@ Game::Game()
 	mStatisticsText.setFont(mFont);
 	mStatisticsText.setPosition(5.f, 5.f);
 	mStatisticsText.setCharacterSize(13);
+
+	mScoreText.setFont(mFont);
+	mScoreText.setPosition(mWindow.getSize().x / 2, 16);
+	mScoreText.setCharacterSize(15);
 }
 
 void Game::run()
@@ -95,7 +101,7 @@ void Game::update(sf::Time elapsedTime)
         mFlowerGenTime -= sf::seconds(5.f);
     }
 
-	mCow.update(elapsedTime, mMap, mWorldBounds);
+	mScore += mCow.update(elapsedTime, mMap, mWorldBounds);
 
 	mAICow.update(elapsedTime, mMap, mWorldBounds);
 }
@@ -133,6 +139,11 @@ void Game::render()
     mWindow.draw(mAICow.mSprite);
 
 	mWindow.draw(mCow.mSprite);
+
+
+	mScoreText.setString("Score = " + toString(mScore));
+
+	mWindow.draw(mScoreText);
 	mWindow.draw(mStatisticsText);
 	mWindow.display();
 }

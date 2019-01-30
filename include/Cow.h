@@ -18,12 +18,12 @@ class Cow
     public:
                             Cow(CowType type);
     void                    updateCowMovement(sf::Time elapsedTime);
-    void                    updateCowCollisionWithEatable(sf::String* my_map);
+    unsigned int            updateCowCollisionWithEatable(sf::String* my_map);
     void                    updateCowAnimation(sf::Time elapsedTime);
     void                    updateCowCollisionWithBarriers(bool isXDir, sf::IntRect bounds);
     void                    updateCowHealthHunger(sf::Time elapsedTime);
 
-    void                    update(sf::Time elapsedTime, sf::String* my_map, sf::IntRect bounds);
+    unsigned int            update(sf::Time elapsedTime, sf::String* my_map, sf::IntRect bounds);
     void                    aiBehavior(sf::Time elapsed_time);
 
     public:

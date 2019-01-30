@@ -54,6 +54,9 @@ class Game : private sf::NonCopyable
 		sf::Time				mStatisticsUpdateTime;
 		std::size_t				mStatisticsNumFrames;
 
+		sf::Text                mScoreText;
+		unsigned int            mScore;
+
 		Flower                  mFlower; //world
 		sf::Time                mFlowerGenTime;
 

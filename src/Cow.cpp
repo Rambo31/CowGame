@@ -108,14 +108,16 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
 }
 
 
-void Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bounds)
+unsigned int Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bounds)
 {
     if(mType == CowType::AI)
     {
         aiBehavior(elapsedTime);
     }
 
-    updateCowCollisionWithEatable(my_map);
+    unsigned int score_value;
+
+    score_value = updateCowCollisionWithEatable(my_map);
 
     updateCowMovement(elapsedTime);
 
@@ -126,6 +128,8 @@ void Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bounds)
     updateCowCollisionWithBarriers(true, bounds);
 
 	updateCowCollisionWithBarriers(false, bounds);
+
+	return score_value;
 }
 
 void Cow::aiBehavior(sf::Time elapsedTime)
@@ -151,10 +155,12 @@ void Cow::aiBehavior(sf::Time elapsedTime)
 
 }
 
-void Cow::updateCowCollisionWithEatable(sf::String* mMap)
+unsigned int Cow::updateCowCollisionWithEatable(sf::String* mMap)
 {
     if(mIsGoingToEat)
     {
+        unsigned int sum = 0;
+
         for(int i = mSprite.getGlobalBounds().left / 32;
         i < (mSprite.getGlobalBounds().left + mSprite.getGlobalBounds().width) / 32;
         i++)
@@ -176,9 +182,17 @@ void Cow::updateCowCollisionWithEatable(sf::String* mMap)
                     {
                         mCurHunger = 100.f;
                     }
+
+                    sum += 2;
                 }
             }
         }
+
+        return sum;
+    }
+    else
+    {
+        return 0;
     }
 }
 
