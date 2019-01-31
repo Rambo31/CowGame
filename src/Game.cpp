@@ -17,7 +17,6 @@ Game::Game()
 , mAICows(new Cow[2])
 , mFlower()
 , mFlowerGenTime()
-, mFont()
 , mStatisticsText()
 , mStatisticsUpdateTime()
 , mStatisticsNumFrames(0)
@@ -27,32 +26,20 @@ Game::Game()
 , mWall()
 {
 
-    for(int i = 0; i < mWindow.getSize().y / 32; i++)
-    {
-        for(std::size_t j = 0; j < mWindow.getSize().x / 32; j++)
-        {
-            if(i == 1  || i == mWindow.getSize().y / 32 - 1)
-            {
-                mMap[i].insert(j, "2");
-            }
-            else
-            {
-                mMap[i].insert(j, "0");
-            }
 
-        }
-    }
 
+    loadFonts();
     loadTextures();
     buildScene();
 
+    sf::Font& sansat_font = mFontHolder.get(Fonts::Sansation);
 
-	mFont.loadFromFile("fonts/Sansation.ttf");
-	mStatisticsText.setFont(mFont);
+
+	mStatisticsText.setFont(sansat_font);
 	mStatisticsText.setPosition(0.f, 0.f);
 	mStatisticsText.setCharacterSize(13);
 
-	mScoreText.setFont(mFont);
+	mScoreText.setFont(sansat_font);
 	mScoreText.setPosition(mWindow.getSize().x / 2, 0);
 	mScoreText.setCharacterSize(15);
 }
@@ -205,6 +192,23 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 void Game::buildScene()
 {
 
+    for(int i = 0; i < mWindow.getSize().y / 32; i++)
+    {
+        for(std::size_t j = 0; j < mWindow.getSize().x / 32; j++)
+        {
+            if(i == 1  || i == mWindow.getSize().y / 32 - 1)
+            {
+                mMap[i].insert(j, "2");
+            }
+            else
+            {
+                mMap[i].insert(j, "0");
+            }
+
+        }
+    }
+
+
     sf::Texture& cow_texture = mTextureHolder.get(Textures::Cow);
 
     mCow.mSprite.setTexture(cow_texture);
@@ -280,6 +284,11 @@ void Game::generateFlower()
     }
 }
 
+
+void Game::loadFonts()
+{
+    mFontHolder.load(Fonts::Sansation, "fonts/Sansation.ttf");
+}
 
 
 Game::~Game()

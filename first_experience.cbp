@@ -53,16 +53,22 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Cow.h" />
 		<Unit filename="include/Flower.h" />
+		<Unit filename="include/Foreach.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/ResourceHolder.h" />
 		<Unit filename="include/ResourceHolder.inl" />
 		<Unit filename="include/ResourceIdentifiers.h" />
+		<Unit filename="include/State.h" />
+		<Unit filename="include/StateIdentifiers.h" />
+		<Unit filename="include/StateStack.h" />
 		<Unit filename="include/StringHelpers.h" />
 		<Unit filename="include/StringHelpers.inl" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Cow.cpp" />
 		<Unit filename="src/Flower.cpp" />
 		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/State.cpp" />
+		<Unit filename="src/StateStack.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

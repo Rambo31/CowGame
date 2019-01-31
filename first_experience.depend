@@ -2,7 +2,7 @@
 1547819629 source:d:\sfml_projects\first_experience\main.cpp
 	"Game.h"
 
-1548916189 d:\sfml_projects\first_experience\include\game.h
+1548959959 d:\sfml_projects\first_experience\include\game.h
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Event.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
@@ -204,7 +204,7 @@
 
 1548002463 d:\sfml_projects\first_experience\include\resourceholder.inl
 
-1548875786 d:\sfml_projects\first_experience\include\resourceidentifiers.h
+1548959061 d:\sfml_projects\first_experience\include\resourceidentifiers.h
 
 1548095762 d:\sfml_projects\first_experience\include\flower.h
 	<SFML/Graphics/Sprite.hpp>
@@ -250,4 +250,35 @@
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
+
+1548958411 source:d:\sfml_projects\first_experience\src\state.cpp
+	"State.h"
+	"StateStack.h"
+
+1548958411 d:\sfml_projects\first_experience\include\state.h
+	<SFML/System/Time.hpp>
+	<SFML/Window/Event.hpp>
+	<memory>
+	"StateIdentifiers.h"
+	"ResourceIdentifiers.h"
+
+1548958411 d:\sfml_projects\first_experience\include\stateidentifiers.h
+
+1548958431 d:\sfml_projects\first_experience\include\statestack.h
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Time.hpp>
+	<vector>
+	<utility>
+	<functional>
+	<map>
+	"State.h"
+	"StateIdentifiers.h"
+	"ResourceIdentifiers.h"
+
+1548958580 source:d:\sfml_projects\first_experience\src\statestack.cpp
+	<cassert>
+	"StateStack.h"
+	"Foreach.h"
+
+1548958560 d:\sfml_projects\first_experience\include\foreach.h
 

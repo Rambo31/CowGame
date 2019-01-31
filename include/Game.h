@@ -27,7 +27,7 @@ class Game : private sf::NonCopyable
 	private:
 	    void                    generateFlower(); //world
 
-
+        void                    loadFonts();
         void                    loadTextures(); //world
         void                    buildScene();//world
 
@@ -45,11 +45,12 @@ class Game : private sf::NonCopyable
 		static const float		PlayerSpeed;
 		static const sf::Time	TimePerFrame;
 
-
+        FontHolder              mFontHolder;
         TextureHolder           mTextureHolder;
 
 		sf::RenderWindow		mWindow;
-		sf::Font				mFont;
+
+
 		sf::Text				mStatisticsText;
 		sf::Time				mStatisticsUpdateTime;
 		std::size_t				mStatisticsNumFrames;
