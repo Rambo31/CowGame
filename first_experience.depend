@@ -219,7 +219,7 @@
 1548002463 source:d:\sfml_projects\first_experience\src\flower.cpp
 	"Flower.h"
 
-1548918096 source:d:\sfml_projects\first_experience\src\game.cpp
+1548919804 source:d:\sfml_projects\first_experience\src\game.cpp
 	<cstdlib>
 	<ctime>
 	<SFML/Graphics/RectangleShape.hpp>
@@ -237,7 +237,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/String.hpp>
 
-1548918566 source:d:\sfml_projects\first_experience\src\cow.cpp
+1548919932 source:d:\sfml_projects\first_experience\src\cow.cpp
 	"Cow.h"
 
 1365229833 d:\sfml-2.0\include\sfml\graphics\rectangleshape.hpp

@@ -46,6 +46,10 @@ Cow::Cow(CowType type)
 void Cow::setType(CowType type)
 {
     this->mType = type;
+    if(type != Player)
+    {
+        mIsGoingToEat = true;
+    }
 }
 
 void Cow::updateCowAnimation(sf::Time elapsedTime)
@@ -116,7 +120,7 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
 {
     if(mCurHunger >= 0)
     {
-        mCurHunger -= 0.015f * elapsedTime.asMilliseconds();
+        mCurHunger -= 0.003f * elapsedTime.asMilliseconds();
 
         float hunger_val = mCurHunger / mBaseHunger;
 
@@ -124,7 +128,7 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
     }
     else if(mCurHealth >= 0)
     {
-        mCurHealth -= 0.008f * elapsedTime.asMilliseconds();
+        mCurHealth -= 0.004f * elapsedTime.asMilliseconds();
 
         float health_val = mCurHealth / mBaseHealth;
 
@@ -155,7 +159,10 @@ unsigned int Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bo
 
     updateCowMovement(elapsedTime);
 
-    updateCowHealthHunger(elapsedTime);
+    if(mType == Player)
+    {
+        updateCowHealthHunger(elapsedTime);
+    }
 
 	updateCowAnimation(elapsedTime);
 
@@ -266,9 +273,9 @@ unsigned int Cow::updateCowCollisionWithEatable(sf::String* mMap)
                     mMap[j].erase(i);
                     mMap[j].insert(i, '0');
 
-                    if(mCurHunger <= 70.f)
+                    if(mCurHunger <= 93.f)
                     {
-                        mCurHunger += 30.f;
+                        mCurHunger += 7.f;
                     }
                     else
                     {

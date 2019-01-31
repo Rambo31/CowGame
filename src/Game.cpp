@@ -104,10 +104,10 @@ void Game::update(sf::Time elapsedTime)
 {
     mFlowerGenTime += elapsedTime;
 
-    if(mFlowerGenTime.asSeconds() > 5.f)
+    if(mFlowerGenTime.asSeconds() > 1.5f)
     {
         generateFlower();
-        mFlowerGenTime -= sf::seconds(5.f);
+        mFlowerGenTime -= sf::seconds(1.5f);
     }
 
 	mScore += mCow.update(elapsedTime, mMap, mWorldBounds);
