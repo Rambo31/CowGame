@@ -11,10 +11,10 @@ const float Game::PlayerSpeed = 100.f;
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
-: mWindow(sf::VideoMode().getFullscreenModes()[0], "SFML Application", sf::Style::Fullscreen)
+: mWindow(sf::VideoMode(1024, 600), "SFML Application", sf::Style::Fullscreen)
 , mWorldBounds(0, 0, mWindow.getSize().x, mWindow.getSize().y)
 , mCow(Cow::CowType::Player)
-, mAICow(Cow::CowType::AI)
+, mAICows(new Cow[2])
 , mFlower()
 , mFlowerGenTime()
 , mFont()
@@ -112,7 +112,11 @@ void Game::update(sf::Time elapsedTime)
 
 	mScore += mCow.update(elapsedTime, mMap, mWorldBounds);
 
-	mAICow.update(elapsedTime, mMap, mWorldBounds);
+    for(int i = 0; i < 2; i++)
+    {
+        mAICows[i].update(elapsedTime, mMap, mWorldBounds);
+    }
+
 }
 
 void Game::render()
@@ -151,7 +155,10 @@ void Game::render()
     mWindow.draw(mCow.mEmptyBar);
     mWindow.draw(mCow.mHunger);
 
-    mWindow.draw(mAICow.mSprite);
+    for(int i = 0; i < 2; i++)
+    {
+     mWindow.draw(mAICows[i].mSprite);
+    }
 
 	mWindow.draw(mCow.mSprite);
 
@@ -204,10 +211,19 @@ void Game::buildScene()
 	mCow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
 	mCow.mSprite.setPosition(100.f, 100.f);
 
-    mAICow.mSprite.setTexture(cow_texture);
-	mAICow.mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
-	mAICow.mSprite.setPosition(0, 64.f);
-	mAICow.mSprite.setColor(sf::Color(237, 206, 206));
+	mAICows[0].setType(Cow::CowType::AI_1);
+    mAICows[0].mSprite.setTexture(cow_texture);
+	mAICows[0].mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
+	mAICows[0].mSprite.setPosition(0, 64.f);
+	mAICows[0].mSprite.setColor(sf::Color(237, 206, 206));
+
+
+    mAICows[1].setType(Cow::CowType::AI_2);
+    mAICows[1].mSprite.setTexture(cow_texture);
+	mAICows[1].mSprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
+	mAICows[1].mSprite.setPosition(224.f, 224.f);
+	mAICows[1].mSprite.setColor(sf::Color(237, 206, 206));
+
 
 	sf::Texture& health_hunger_tex =  mTextureHolder.get(Textures::HealthHunger);
 	mCow.mEmptyBar.setTexture(health_hunger_tex);
@@ -269,4 +285,5 @@ void Game::generateFlower()
 Game::~Game()
 {
     delete mMap;
+    delete mAICows;
 }

@@ -1,5 +1,26 @@
 #include "Cow.h"
 
+Cow::Cow()
+: mBaseHealth(100.f)
+, mCurHealth(100.f)
+, mBaseHunger(100.f)
+, mCurHunger(100.f)
+, mSprite()
+, mEmptyBar()
+, mHealth()
+, mHunger()
+, mIsMovingUp(false)
+, mIsMovingDown(false)
+, mIsMovingRight(false)
+, mIsMovingLeft(false)
+, mIsGoingToEat(false)
+, curFrame(0)
+, mTime()
+, mType()
+{
+    //ctor
+}
+
 Cow::Cow(CowType type)
 : mBaseHealth(100.f)
 , mCurHealth(100.f)
@@ -21,6 +42,11 @@ Cow::Cow(CowType type)
     //ctor
 }
 
+
+void Cow::setType(CowType type)
+{
+    this->mType = type;
+}
 
 void Cow::updateCowAnimation(sf::Time elapsedTime)
 {
@@ -109,10 +135,19 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
 
 unsigned int Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bounds)
 {
-    if(mType == CowType::AI)
+    if(mType != CowType::Player)
     {
-        aiBehavior_1(elapsedTime);
+        switch(mType)
+        {
+        case AI_1:
+            aiBehavior_1(elapsedTime);
+            break;
+        case AI_2:
+            aiBehavior_2(elapsedTime);
+            break;
+        }
     }
+
 
     unsigned int score_value;
 
@@ -131,14 +166,46 @@ unsigned int Cow::update(sf::Time elapsedTime,sf::String* my_map, sf::IntRect bo
 	return score_value;
 }
 
+void Cow::aiBehavior_2(sf::Time elapsedTime)
+{
+    mTime += elapsedTime;
+
+    if(mTime.asSeconds() > 8.f)
+    {
+        mTime -= sf::seconds(8.f);
+    }
+
+    if(mTime.asSeconds() < 2.f)
+    {
+        mIsMovingLeft = false;
+        mIsMovingDown = true;
+        mIsMovingRight = true;
+    }
+    else if(mTime.asSeconds() < 4.f)
+    {
+        mIsMovingDown = false;
+        mIsMovingUp = true;
+    }
+    else if(mTime.asSeconds() < 6.f)
+    {
+        mIsMovingRight = false;
+        mIsMovingLeft = true;
+    }
+    else if(mTime.asSeconds() < 8.f)
+    {
+        mIsMovingUp = false;
+        mIsMovingDown = true;
+    }
+}
+
 void Cow::aiBehavior_1(sf::Time elapsedTime)
 {
     mTime += elapsedTime;
 
 
-    if(mTime.asSeconds() > 25.f)
+    if(mTime.asSeconds() > 24.f)
     {
-        mTime -= sf::seconds(25.f);
+        mTime -= sf::seconds(24.f);
     }
 
     if(mTime.asSeconds() < 3.5f)
@@ -155,25 +222,25 @@ void Cow::aiBehavior_1(sf::Time elapsedTime)
     {
         mIsMovingUp = true;
     }
-    else if(mTime.asSeconds() < 12.5f)
+    else if(mTime.asSeconds() < 12.f)
     {
         mIsMovingUp = false;
     }
-    else if(mTime.asSeconds() < 16.f)
+    else if(mTime.asSeconds() < 15.5f)
     {
         mIsMovingRight = false;
         mIsMovingDown = true;
     }
-    else if(mTime.asSeconds() < 18.5f)
+    else if(mTime.asSeconds() < 18.f)
     {
         mIsMovingDown = false;
         mIsMovingLeft = true;
     }
-    else if(mTime.asSeconds() < 22.f)
+    else if(mTime.asSeconds() < 21.5f)
     {
         mIsMovingUp = true;
     }
-    else if(mTime.asSeconds() < 25.f)
+    else if(mTime.asSeconds() < 24.f)
     {
         mIsMovingUp = false;
     }

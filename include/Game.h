@@ -65,7 +65,7 @@ class Game : private sf::NonCopyable
         sf::IntRect             mWorldBounds;
 
 		Cow				        mCow; //world
-		Cow                     mAICow;
+		Cow*                    mAICows;
 
 };
 

@@ -12,11 +12,14 @@ class Cow
         enum CowType
         {
             Player,
-            AI
+            AI_1,
+            AI_2
         };
 
     public:
+                            Cow();
                             Cow(CowType type);
+    void                    setType(CowType type);
     void                    updateCowMovement(sf::Time elapsedTime);
     unsigned int            updateCowCollisionWithEatable(sf::String* my_map);
     void                    updateCowAnimation(sf::Time elapsedTime);
@@ -24,6 +27,7 @@ class Cow
     void                    updateCowHealthHunger(sf::Time elapsedTime);
 
     unsigned int            update(sf::Time elapsedTime, sf::String* my_map, sf::IntRect bounds);
+    void                    aiBehavior_2(sf::Time elapsedTime);
     void                    aiBehavior_1(sf::Time elapsed_time);
 
     public:
