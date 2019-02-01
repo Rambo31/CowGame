@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAMESTATE_H
+#define GAMESTATE_H
 
 
 
@@ -10,19 +10,20 @@
 #include<SFML/Graphics/Text.hpp>
 #include<SFML/Graphics/Font.hpp>
 
-
+#include"State.h"
 #include"ResourceHolder.h"
 #include"ResourceIdentifiers.h"
 #include"Flower.h"
 #include"Cow.h"
 
-class Game : private sf::NonCopyable
+class GameState : public State
 {
 	public:
-								Game();
-                                ~Game();
-		void					run();
-
+								GameState(StateStack& stack, Context context);
+                                ~GameState();
+virtual	void				    draw();
+virtual	bool			        update(sf::Time elapsedTime);
+virtual	bool				    handleEvent(const sf::Event& event);
 
 	private:
 	    void                    generateFlower(); //world
@@ -32,28 +33,17 @@ class Game : private sf::NonCopyable
         void                    buildScene();//world
 
 
-		void					processEvents();
-		void					update(sf::Time elapsedTime);
-		void					render();
-
-
-		void					updateStatistics(sf::Time elapsedTime);
 		void					handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 
 
 	private:
 		static const float		PlayerSpeed;
-		static const sf::Time	TimePerFrame;
 
-        FontHolder              mFontHolder;
-        TextureHolder           mTextureHolder;
+        FontHolder&              mFontHolder;
+        TextureHolder&           mTextureHolder;
 
-		sf::RenderWindow		mWindow;
+		sf::RenderWindow&		mWindow;
 
-
-		sf::Text				mStatisticsText;
-		sf::Time				mStatisticsUpdateTime;
-		std::size_t				mStatisticsNumFrames;
 
 		sf::Text                mScoreText;
 		unsigned int            mScore;
@@ -65,9 +55,9 @@ class Game : private sf::NonCopyable
         sf::String*             mMap;//world
         sf::IntRect             mWorldBounds;
 
-		Cow				        mCow; //world
+		Cow&				    mCow; //world
 		Cow*                    mAICows;
 
 };
 
-#endif // GAME_H
+#endif // GAMESTATE_H

@@ -9,6 +9,7 @@
 
 #include "StateIdentifiers.h"
 #include "ResourceIdentifiers.h"
+#include "Cow.h"
 
 
 namespace sf
@@ -26,12 +27,12 @@ class State
 
 		struct Context
 		{
-								Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, Player& player);
+								Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, Cow& player);
 
 			sf::RenderWindow*	window;
 			TextureHolder*		textures;
 			FontHolder*			fonts;
-			Player*				player;
+			Cow*				player;
 		};
 
 

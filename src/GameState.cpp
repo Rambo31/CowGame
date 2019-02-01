@@ -3,27 +3,26 @@
 
 #include<SFML/Graphics/RectangleShape.hpp>
 
-#include "Game.h"
+#include "GameState.h"
 #include "StringHelpers.h"
 
 
-const float Game::PlayerSpeed = 100.f;
-const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
+const float GameState::PlayerSpeed = 100.f;
 
-Game::Game()
-: mWindow(sf::VideoMode(1024, 600), "SFML Application", sf::Style::Fullscreen)
+GameState::GameState(StateStack& my_stack, Context context)
+: State(my_stack, context)
+, mWindow(*context.window)
 , mWorldBounds(0, 0, mWindow.getSize().x, mWindow.getSize().y)
-, mCow(Cow::CowType::Player)
+, mCow(*context.player)
 , mAICows(new Cow[2])
 , mFlower()
 , mFlowerGenTime()
-, mStatisticsText()
-, mStatisticsUpdateTime()
-, mStatisticsNumFrames(0)
 , mMap(new sf::String[mWindow.getSize().y / 32])
 , mScoreText()
 , mScore(0)
 , mWall()
+, mTextureHolder(*context.textures)
+, mFontHolder(*context.fonts)
 {
 
 
@@ -35,59 +34,33 @@ Game::Game()
     sf::Font& sansat_font = mFontHolder.get(Fonts::Sansation);
 
 
-	mStatisticsText.setFont(sansat_font);
-	mStatisticsText.setPosition(0.f, 0.f);
-	mStatisticsText.setCharacterSize(13);
-
 	mScoreText.setFont(sansat_font);
 	mScoreText.setPosition(mWindow.getSize().x / 2, 0);
 	mScoreText.setCharacterSize(15);
 }
 
-void Game::run()
-{
-	sf::Clock clock;
-	sf::Time timeSinceLastUpdate = sf::Time::Zero;
-	while (mWindow.isOpen())
-	{
-		sf::Time elapsedTime = clock.restart();
-		timeSinceLastUpdate += elapsedTime;
-		while (timeSinceLastUpdate > TimePerFrame)
-		{
-			timeSinceLastUpdate -= TimePerFrame;
 
-			processEvents();
-			update(TimePerFrame);
+bool GameState::handleEvent(const sf::Event& event)
+{
+    switch (event.type)
+    {
+        case sf::Event::KeyPressed:
+            handlePlayerInput(event.key.code, true);
+            break;
+
+        case sf::Event::KeyReleased:
+            handlePlayerInput(event.key.code, false);
+            break;
+
+        case sf::Event::Closed:
+            mWindow.close();
+            break;
 		}
 
-		updateStatistics(elapsedTime);
-		render();
-	}
+	return true;
 }
 
-void Game::processEvents()
-{
-	sf::Event event;
-	while (mWindow.pollEvent(event))
-	{
-		switch (event.type)
-		{
-			case sf::Event::KeyPressed:
-				handlePlayerInput(event.key.code, true);
-				break;
-
-			case sf::Event::KeyReleased:
-				handlePlayerInput(event.key.code, false);
-				break;
-
-			case sf::Event::Closed:
-				mWindow.close();
-				break;
-		}
-	}
-}
-
-void Game::update(sf::Time elapsedTime)
+bool GameState::update(sf::Time elapsedTime)
 {
     mFlowerGenTime += elapsedTime;
 
@@ -104,9 +77,11 @@ void Game::update(sf::Time elapsedTime)
         mAICows[i].update(elapsedTime, mMap, mWorldBounds);
     }
 
+
+    return true;
 }
 
-void Game::render()
+void GameState::draw()
 {
     sf::Color color(52, 171, 24);
 
@@ -153,27 +128,11 @@ void Game::render()
 	mScoreText.setString("Score = " + toString(mScore));
 
 	mWindow.draw(mScoreText);
-	mWindow.draw(mStatisticsText);
-	mWindow.display();
+
 }
 
-void Game::updateStatistics(sf::Time elapsedTime)
-{
-	mStatisticsUpdateTime += elapsedTime;
-	mStatisticsNumFrames += 1;
 
-	if (mStatisticsUpdateTime >= sf::seconds(1.0f))
-	{
-		mStatisticsText.setString(
-			"Frames / Second = " + toString(mStatisticsNumFrames) + "\n" +
-			"Time / Update = " + toString(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) + "us");
-
-		mStatisticsUpdateTime -= sf::seconds(1.0f);
-		mStatisticsNumFrames = 0;
-	}
-}
-
-void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
+void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 {
 	if (key == sf::Keyboard::W)
 		mCow.mIsMovingUp = isPressed;
@@ -189,7 +148,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 
 
 
-void Game::buildScene()
+void GameState::buildScene()
 {
 
     for(int i = 0; i < mWindow.getSize().y / 32; i++)
@@ -258,7 +217,7 @@ void Game::buildScene()
 
 }
 
-void Game::loadTextures()
+void GameState::loadTextures()
 {
     mTextureHolder.load(Textures::Cow, "images/cow.png");
     mTextureHolder.load(Textures::Flower, "images/flower.png");
@@ -266,7 +225,7 @@ void Game::loadTextures()
     mTextureHolder.load(Textures::Walls, "images/walls.png");
 }
 
-void Game::generateFlower()
+void GameState::generateFlower()
 {
     static unsigned int seed = 0;
 
@@ -285,13 +244,13 @@ void Game::generateFlower()
 }
 
 
-void Game::loadFonts()
+void GameState::loadFonts()
 {
-    mFontHolder.load(Fonts::Sansation, "fonts/Sansation.ttf");
+   // mFontHolder.load(Fonts::Sansation, "fonts/Sansation.ttf");
 }
 
 
-Game::~Game()
+GameState::~GameState()
 {
     delete mMap;
     delete mAICows;

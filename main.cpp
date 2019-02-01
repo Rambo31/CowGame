@@ -1,7 +1,7 @@
-#include"Game.h"
+#include"Application.h"
 
 int main()
 {
-    Game game;
-    game.run();
+    Application app;
+    app.run();
 }
