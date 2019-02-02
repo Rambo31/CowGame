@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1549025690 source:d:\sfml_projects\first_experience\main.cpp
+1549100667 source:d:\sfml_projects\first_experience\main.cpp
 	"Application.h"
 
 1549023047 d:\sfml_projects\first_experience\include\game.h
@@ -194,7 +194,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<vector>
 
-1549023047 d:\sfml_projects\first_experience\include\resourceholder.h
+1549100667 d:\sfml_projects\first_experience\include\resourceholder.h
 	<map>
 	<string>
 	<memory>
@@ -202,11 +202,11 @@
 	<cassert>
 	"ResourceHolder.inl"
 
-1549023047 d:\sfml_projects\first_experience\include\resourceholder.inl
+1549100667 d:\sfml_projects\first_experience\include\resourceholder.inl
 
-1549023047 d:\sfml_projects\first_experience\include\resourceidentifiers.h
+1549100667 d:\sfml_projects\first_experience\include\resourceidentifiers.h
 
-1549023047 d:\sfml_projects\first_experience\include\flower.h
+1549100667 d:\sfml_projects\first_experience\include\flower.h
 	<SFML/Graphics/Sprite.hpp>
 
 1365229833 d:\sfml-2.0\include\sfml\graphics\sprite.hpp
@@ -216,7 +216,7 @@
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1549023047 source:d:\sfml_projects\first_experience\src\flower.cpp
+1549100667 source:d:\sfml_projects\first_experience\src\flower.cpp
 	"Flower.h"
 
 1549023047 source:d:\sfml_projects\first_experience\src\game.cpp
@@ -226,18 +226,18 @@
 	"Game.h"
 	"StringHelpers.h"
 
-1549023047 d:\sfml_projects\first_experience\include\stringhelpers.h
+1549100667 d:\sfml_projects\first_experience\include\stringhelpers.h
 	<sstream>
 	"StringHelpers.inl"
 
-1549023047 d:\sfml_projects\first_experience\include\stringhelpers.inl
+1549100667 d:\sfml_projects\first_experience\include\stringhelpers.inl
 
-1549023047 d:\sfml_projects\first_experience\include\cow.h
+1549100667 d:\sfml_projects\first_experience\include\cow.h
 	<SFML/Graphics/Sprite.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/System/String.hpp>
 
-1549023047 source:d:\sfml_projects\first_experience\src\cow.cpp
+1549100667 source:d:\sfml_projects\first_experience\src\cow.cpp
 	"Cow.h"
 
 1365229833 d:\sfml-2.0\include\sfml\graphics\rectangleshape.hpp
@@ -251,11 +251,11 @@
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
 
-1549025779 source:d:\sfml_projects\first_experience\src\state.cpp
+1549100667 source:d:\sfml_projects\first_experience\src\state.cpp
 	"State.h"
 	"StateStack.h"
 
-1549026288 d:\sfml_projects\first_experience\include\state.h
+1549100667 d:\sfml_projects\first_experience\include\state.h
 	<SFML/System/Time.hpp>
 	<SFML/Window/Event.hpp>
 	<memory>
@@ -263,9 +263,9 @@
 	"ResourceIdentifiers.h"
 	"Cow.h"
 
-1549023047 d:\sfml_projects\first_experience\include\stateidentifiers.h
+1549100667 d:\sfml_projects\first_experience\include\stateidentifiers.h
 
-1549023047 d:\sfml_projects\first_experience\include\statestack.h
+1549100667 d:\sfml_projects\first_experience\include\statestack.h
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/Time.hpp>
 	<vector>
@@ -276,21 +276,21 @@
 	"StateIdentifiers.h"
 	"ResourceIdentifiers.h"
 
-1549023047 source:d:\sfml_projects\first_experience\src\statestack.cpp
+1549100667 source:d:\sfml_projects\first_experience\src\statestack.cpp
 	<cassert>
 	"StateStack.h"
 	"Foreach.h"
 
-1549023047 d:\sfml_projects\first_experience\include\foreach.h
+1549100667 d:\sfml_projects\first_experience\include\foreach.h
 
-1549030602 source:d:\sfml_projects\first_experience\src\gamestate.cpp
+1549100667 source:d:\sfml_projects\first_experience\src\gamestate.cpp
 	<cstdlib>
 	<ctime>
 	<SFML/Graphics/RectangleShape.hpp>
 	"GameState.h"
 	"StringHelpers.h"
 
-1549030602 d:\sfml_projects\first_experience\include\gamestate.h
+1549100667 d:\sfml_projects\first_experience\include\gamestate.h
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Event.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
@@ -302,7 +302,7 @@
 	"Flower.h"
 	"Cow.h"
 
-1549030649 d:\sfml_projects\first_experience\include\application.h
+1549100667 d:\sfml_projects\first_experience\include\application.h
 	<SFML/System/Time.hpp>
 	<SFML/Graphics/RenderWindow.hpp>
 	<SFML/Graphics/Texture.hpp>
@@ -313,8 +313,31 @@
 	"Cow.h"
 	"StateStack.h"
 
-1549030696 source:d:\sfml_projects\first_experience\src\application.cpp
+1549100667 source:d:\sfml_projects\first_experience\src\application.cpp
 	"Application.h"
 	"GameState.h"
 	"StringHelpers.h"
+
+1549101887 source:d:\sfml_projects\first_experience\src\titlestate.cpp
+	<SFML/Graphics/RenderWindow.hpp>
+	"TitleState.h"
+	"Utility.h"
+	"ResourceHolder.h"
+
+1549101887 d:\sfml_projects\first_experience\include\titlestate.h
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	"State.h"
+
+1549101887 d:\sfml_projects\first_experience\include\utility.h
+	<sstream>
+	"Utility.inl"
+
+1549101887 d:\sfml_projects\first_experience\include\utility.inl
+
+1549101887 source:d:\sfml_projects\first_experience\src\utility.cpp
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	"Utility.h"
+	<cmath>
 
