@@ -1,6 +1,7 @@
 #include "Application.h"
 #include"GameState.h"
 #include"TitleState.h"
+#include"MenuState.h"
 #include "StringHelpers.h"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
@@ -72,6 +73,7 @@ void Application::update(sf::Time dt)
 
 void Application::render()
 {
+    mWindow.clear(sf::Color::Black);
 
 	mStateStack.draw();
 
@@ -83,7 +85,7 @@ void Application::render()
 void Application::registerStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
-	//mStateStack.registerState<MenuState>(States::Menu);
+	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
 	//mStateStack.registerState<PauseState>(States::Pause);
 }

@@ -24,7 +24,6 @@ void TitleState::draw()
 	sf::RenderWindow& window = *getContext().window;
 	//window.draw(mBackgroundSprite);
 
-	window.clear();
 
 	if (mShowText)
 		window.draw(mText);
@@ -49,7 +48,7 @@ bool TitleState::handleEvent(const sf::Event& event)
 	if (event.type == sf::Event::KeyPressed)
 	{
 		requestStackPop();
-		requestStackPush(States::Game);
+		requestStackPush(States::Menu);
 	}
 
 	return true;

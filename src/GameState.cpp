@@ -5,6 +5,7 @@
 
 #include "GameState.h"
 #include "StringHelpers.h"
+#include"Utility.h"
 
 
 const float GameState::PlayerSpeed = 100.f;
@@ -35,7 +36,7 @@ GameState::GameState(StateStack& my_stack, Context context)
 
 
 	mScoreText.setFont(sansat_font);
-	mScoreText.setPosition(mWindow.getSize().x / 2, 0);
+	mScoreText.setPosition(mWindow.getSize().x / 2, 16);
 	mScoreText.setCharacterSize(15);
 }
 
@@ -126,6 +127,8 @@ void GameState::draw()
 
 
 	mScoreText.setString("Score = " + toString(mScore));
+
+	centerOrigin(mScoreText);
 
 	mWindow.draw(mScoreText);
 

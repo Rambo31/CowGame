@@ -120,7 +120,7 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
 {
     if(mCurHunger >= 0)
     {
-        mCurHunger -= 0.003f * elapsedTime.asMilliseconds();
+        mCurHunger -= 0.012f * elapsedTime.asMilliseconds();
 
         float hunger_val = mCurHunger / mBaseHunger;
 
@@ -128,7 +128,7 @@ void Cow::updateCowHealthHunger(sf::Time elapsedTime)
     }
     else if(mCurHealth >= 0)
     {
-        mCurHealth -= 0.004f * elapsedTime.asMilliseconds();
+        mCurHealth -= 0.016f * elapsedTime.asMilliseconds();
 
         float health_val = mCurHealth / mBaseHealth;
 

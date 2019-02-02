@@ -237,7 +237,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/String.hpp>
 
-1549100667 source:d:\sfml_projects\first_experience\src\cow.cpp
+1549106399 source:d:\sfml_projects\first_experience\src\cow.cpp
 	"Cow.h"
 
 1365229833 d:\sfml-2.0\include\sfml\graphics\rectangleshape.hpp
@@ -313,12 +313,14 @@
 	"Cow.h"
 	"StateStack.h"
 
-1549100667 source:d:\sfml_projects\first_experience\src\application.cpp
+1549106562 source:d:\sfml_projects\first_experience\src\application.cpp
 	"Application.h"
 	"GameState.h"
+	"TitleState.h"
+	"MenuState.h"
 	"StringHelpers.h"
 
-1549101887 source:d:\sfml_projects\first_experience\src\titlestate.cpp
+1549106562 source:d:\sfml_projects\first_experience\src\titlestate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
 	"TitleState.h"
 	"Utility.h"
@@ -329,15 +331,27 @@
 	<SFML/Graphics/Text.hpp>
 	"State.h"
 
-1549101887 d:\sfml_projects\first_experience\include\utility.h
+1549107100 d:\sfml_projects\first_experience\include\utility.h
 	<sstream>
-	"Utility.inl"
 
-1549101887 d:\sfml_projects\first_experience\include\utility.inl
+1549106935 d:\sfml_projects\first_experience\include\utility.inl
 
 1549101887 source:d:\sfml_projects\first_experience\src\utility.cpp
 	<SFML/Graphics/Sprite.hpp>
 	<SFML/Graphics/Text.hpp>
 	"Utility.h"
 	<cmath>
+
+1549106344 d:\sfml_projects\first_experience\include\menustate.h
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	"State.h"
+
+1549106562 source:d:\sfml_projects\first_experience\src\menustate.cpp
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/View.hpp>
+	"MenuState.h"
+	"Utility.h"
+	"Foreach.h"
+	"ResourceHolder.h"
 
