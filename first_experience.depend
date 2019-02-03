@@ -263,7 +263,7 @@
 	"ResourceIdentifiers.h"
 	"Cow.h"
 
-1549185518 d:\sfml_projects\first_experience\include\stateidentifiers.h
+1549213763 d:\sfml_projects\first_experience\include\stateidentifiers.h
 
 1549100667 d:\sfml_projects\first_experience\include\statestack.h
 	<SFML/System/NonCopyable.hpp>
@@ -283,7 +283,7 @@
 
 1549100667 d:\sfml_projects\first_experience\include\foreach.h
 
-1549188196 source:d:\sfml_projects\first_experience\src\gamestate.cpp
+1549189371 source:d:\sfml_projects\first_experience\src\gamestate.cpp
 	<cstdlib>
 	<ctime>
 	<SFML/Graphics/RectangleShape.hpp>
@@ -314,15 +314,16 @@
 	"Cow.h"
 	"StateStack.h"
 
-1549187990 source:d:\sfml_projects\first_experience\src\application.cpp
+1549213810 source:d:\sfml_projects\first_experience\src\application.cpp
 	"Application.h"
 	"GameState.h"
 	"TitleState.h"
 	"MenuState.h"
 	"GameOverState.h"
+	"DataInputState.h"
 	"StringHelpers.h"
 
-1549187990 source:d:\sfml_projects\first_experience\src\titlestate.cpp
+1549213987 source:d:\sfml_projects\first_experience\src\titlestate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
 	"TitleState.h"
 	"Utility.h"
@@ -349,7 +350,7 @@
 	<SFML/Graphics/Text.hpp>
 	"State.h"
 
-1549106562 source:d:\sfml_projects\first_experience\src\menustate.cpp
+1549213987 source:d:\sfml_projects\first_experience\src\menustate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
 	<SFML/Graphics/View.hpp>
 	"MenuState.h"
@@ -365,6 +366,17 @@
 1549187990 source:d:\sfml_projects\first_experience\src\gameoverstate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
 	"GameOverState.h"
+	"Utility.h"
+	"ResourceHolder.h"
+
+1549214849 d:\sfml_projects\first_experience\include\datainputstate.h
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	"State.h"
+
+1549215998 source:d:\sfml_projects\first_experience\src\datainputstate.cpp
+	<SFML/Graphics/RenderWindow.hpp>
+	"DataInputState.h"
 	"Utility.h"
 	"ResourceHolder.h"
 

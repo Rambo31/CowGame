@@ -56,6 +56,7 @@
 		<Unit filename="include/Cow.h" />
 		<Unit filename="include/Flower.h" />
 		<Unit filename="include/Foreach.h" />
+		<Unit filename="include/GameOverState.h" />
 		<Unit filename="include/GameState.h" />
 		<Unit filename="include/MenuState.h" />
 		<Unit filename="include/ResourceHolder.h" />
@@ -72,6 +73,7 @@
 		<Unit filename="src/Application.cpp" />
 		<Unit filename="src/Cow.cpp" />
 		<Unit filename="src/Flower.cpp" />
+		<Unit filename="src/GameOverState.cpp" />
 		<Unit filename="src/GameState.cpp" />
 		<Unit filename="src/MenuState.cpp" />
 		<Unit filename="src/State.cpp" />

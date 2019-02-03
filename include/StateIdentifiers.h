@@ -12,7 +12,8 @@ namespace States
 		Game,
 		Loading,
 		Pause,
-		GameOver
+		GameOver,
+		DataInput
 	};
 }
 
