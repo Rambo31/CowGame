@@ -31,6 +31,7 @@ virtual	bool				    handleEvent(const sf::Event& event);
         void                    loadFonts();
         void                    loadTextures(); //world
         void                    buildScene();//world
+       // void                    clearScene()
 
 
 		void					handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
@@ -39,8 +40,8 @@ virtual	bool				    handleEvent(const sf::Event& event);
 	private:
 		static const float		PlayerSpeed;
 
-        FontHolder&              mFontHolder;
-        TextureHolder&           mTextureHolder;
+        FontHolder               mFontHolder;
+        TextureHolder            mTextureHolder;
 
 		sf::RenderWindow&		mWindow;
 

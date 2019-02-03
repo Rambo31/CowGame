@@ -55,6 +55,7 @@ bool GameOverState::handleEvent(const sf::Event& event)
 	if (event.type == sf::Event::KeyPressed)
 	{
 		requestStackPop();
+		requestStackPush(States::Menu);
 	}
 
 	return true;

@@ -22,8 +22,8 @@ GameState::GameState(StateStack& my_stack, Context context)
 , mScoreText()
 , mScore(0)
 , mWall()
-, mTextureHolder(*context.textures)
-, mFontHolder(*context.fonts)
+, mTextureHolder()
+, mFontHolder()
 {
 
 
@@ -152,6 +152,8 @@ void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 		mCow.mIsMovingRight = isPressed;
     else if (key == sf::Keyboard::Space)
         mCow.mIsGoingToEat = isPressed;
+
+
 }
 
 
@@ -203,12 +205,12 @@ void GameState::buildScene()
 
     mCow.mHealth.setTexture(health_hunger_tex);
     mCow.mHealth.setTextureRect(sf::IntRect(0, 32, 128, 32));
-    mCow.mHealth.setPosition(mWindow.getSize().x - mCow.mHealth.getGlobalBounds().width, 0);
+    mCow.mHealth.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 0);
 
 
     mCow.mHunger.setTexture(health_hunger_tex);
     mCow.mHunger.setTextureRect(sf::IntRect(0, 64, 128, 32));
-    mCow.mHunger.setPosition(mWindow.getSize().x - mCow.mHunger.getGlobalBounds().width, 32);
+    mCow.mHunger.setPosition(mWindow.getSize().x - mCow.mEmptyBar.getGlobalBounds().width, 32);
 
 
 	sf::Texture& flower_tex = mTextureHolder.get(Textures::Flower);
@@ -254,7 +256,7 @@ void GameState::generateFlower()
 
 void GameState::loadFonts()
 {
-   // mFontHolder.load(Fonts::Sansation, "fonts/Sansation.ttf");
+    mFontHolder.load(Fonts::Sansation, "fonts/Sansation.ttf");
 }
 
 
@@ -262,4 +264,12 @@ GameState::~GameState()
 {
     delete mMap;
     delete mAICows;
+
+
+
+    // update cows parameters
+    mCow.mCurHealth = 100.f;
+    mCow.mCurHunger = 100.f;
+
+    mCow.mHealth.setScale(1.f, 1.f);
 }

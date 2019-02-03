@@ -13,6 +13,7 @@ TitleState::TitleState(StateStack& stack, Context context)
 {
 	//mBackgroundSprite.setTexture(context.textures->get(Textures::TitleScreen));
 
+
 	mText.setFont(context.fonts->get(Fonts::Sansation));
 	mText.setString("Press any key to start");
 	centerOrigin(mText);
