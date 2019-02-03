@@ -2,6 +2,7 @@
 #include"GameState.h"
 #include"TitleState.h"
 #include"MenuState.h"
+#include"GameOverState.h"
 #include "StringHelpers.h"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
@@ -88,6 +89,7 @@ void Application::registerStates()
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
 	//mStateStack.registerState<PauseState>(States::Pause);
+	mStateStack.registerState<GameOverState>(States::GameOver);
 }
 
 

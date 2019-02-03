@@ -78,6 +78,11 @@ bool GameState::update(sf::Time elapsedTime)
         mAICows[i].update(elapsedTime, mMap, mWorldBounds);
     }
 
+    if(mCow.mCurHealth <= 0)
+    {
+        requestStackPop();
+        requestStackPush(States::GameOver);
+    }
 
     return true;
 }
