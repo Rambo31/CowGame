@@ -1,3 +1,9 @@
 newcow=10
 widecow=10
 yellowbull=14
+ultracow=6
+killcow=2
+funnyman1=4
+rat1=4
+nice0person=0
+faketaxi=14

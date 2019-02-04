@@ -5,7 +5,6 @@
 		<Option title="first_experience" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="include\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/first_experience" prefix_auto="1" extension_auto="1" />
@@ -53,6 +52,7 @@
 		</Linker>
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Application.h" />
+		<Unit filename="include/BestScoresState.h" />
 		<Unit filename="include/Cow.h" />
 		<Unit filename="include/DataInputState.h" />
 		<Unit filename="include/Flower.h" />
@@ -71,7 +71,9 @@
 		<Unit filename="include/TitleState.h" />
 		<Unit filename="include/Utility.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resources/Scores.txt" />
 		<Unit filename="src/Application.cpp" />
+		<Unit filename="src/BestScoresState.cpp" />
 		<Unit filename="src/Cow.cpp" />
 		<Unit filename="src/DataInputState.cpp" />
 		<Unit filename="src/Flower.cpp" />

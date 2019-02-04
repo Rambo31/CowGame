@@ -56,7 +56,7 @@ bool DataInputState::handleEvent(const sf::Event& event)
 	// If any key is pressed, trigger the next screen
 	if (event.type == sf::Event::KeyPressed)
 	{
-	    if(event.key.code == sf::Keyboard::Return)
+	    if(mInputStr.getSize() > 3 && event.key.code == sf::Keyboard::Return)
         {
             getContext().player->mName = mInputStr;
 
@@ -85,3 +85,6 @@ bool DataInputState::handleEvent(const sf::Event& event)
 
 	return true;
 }
+
+
+

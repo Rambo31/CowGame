@@ -8,6 +8,7 @@
 #include<iostream>
 
 
+
 void writeScoreToFile(std::string name, unsigned int score, sf::String filename)
 {
     std::ofstream out;
@@ -32,4 +33,38 @@ void centerOrigin(sf::Text& text)
 {
 	sf::FloatRect bounds = text.getLocalBounds();
 	text.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+}
+
+void readEntryFromFile(std::vector<std::pair<sf::String, sf::String>>& vect, sf::String filename)
+{
+    sf::String name = "";
+    sf::String number = "";
+
+    std::ifstream in(filename);
+
+    if(in.is_open())
+    {
+        char ch;
+
+        while(in.peek() != EOF)
+        {
+            while((ch = in.get()) && ch != '=')
+            {
+                name += ch;
+            }
+
+
+            while((ch = in.get()) && ch != '\n')
+            {
+                number += ch;
+            }
+
+            vect.push_back(std::make_pair(name, number));
+            name.clear();
+            number.clear();
+        }
+    }
+    in.close();
+
+
 }
