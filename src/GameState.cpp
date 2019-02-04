@@ -80,6 +80,8 @@ bool GameState::update(sf::Time elapsedTime)
 
     if(mCow.mCurHealth <= 0)
     {
+        writeScoreToFile(mCow.mName.toAnsiString(), mScore, "resources/Scores.txt");
+
         requestStackPop();
         requestStackPush(States::GameOver);
     }

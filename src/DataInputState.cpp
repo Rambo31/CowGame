@@ -58,6 +58,9 @@ bool DataInputState::handleEvent(const sf::Event& event)
 	{
 	    if(event.key.code == sf::Keyboard::Return)
         {
+            getContext().player->mName = mInputStr;
+
+
             requestStackPop();
             requestStackPush(States::Game);
         }
@@ -65,7 +68,7 @@ bool DataInputState::handleEvent(const sf::Event& event)
         {
             mInputStr.erase(mInputStr.getSize() - 1);
         }
-        else if(mInputStr.getSize() < 30)
+        else if(mInputStr.getSize() < 20)
         {
             if( event.key.code >= sf::Keyboard::A && event.key.code <= sf::Keyboard::Z)
             {

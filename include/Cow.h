@@ -54,6 +54,7 @@ class Cow
 
     sf::Time                mTime;
     CowType                 mType;
+    sf::String              mName;
 
 };
 

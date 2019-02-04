@@ -27,11 +27,18 @@ MenuState::MenuState(StateStack& stack, Context context)
 	playOption.setPosition(context.window->getView().getSize() / 2.f);
 	mOptions.push_back(playOption);
 
+    sf::Text scoreOption;
+	scoreOption.setFont(font);
+	scoreOption.setString("Best scores");
+	centerOrigin(scoreOption);
+	scoreOption.setPosition(playOption.getPosition() + sf::Vector2f(0.f, 30.f));
+	mOptions.push_back(scoreOption);
+
 	sf::Text exitOption;
 	exitOption.setFont(font);
 	exitOption.setString("Exit");
 	centerOrigin(exitOption);
-	exitOption.setPosition(playOption.getPosition() + sf::Vector2f(0.f, 30.f));
+	exitOption.setPosition(scoreOption.getPosition() + sf::Vector2f(0.f, 30.f));
 	mOptions.push_back(exitOption);
 
 	updateOptionText();
@@ -66,6 +73,11 @@ bool MenuState::handleEvent(const sf::Event& event)
 			requestStackPop();
 			requestStackPush(States::DataInput);
 		}
+		else if(mOptionIndex == Scores)
+        {
+            requestStackPop();
+			requestStackPush(States::Scores);
+        }
 		else if (mOptionIndex == Exit)
 		{
 			// The exit option was chosen, by removing itself, the stack will be empty, and the game will know it is time to close.

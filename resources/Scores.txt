@@ -1,0 +1,3 @@
+newcow=10
+widecow=10
+yellowbull=14

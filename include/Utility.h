@@ -3,7 +3,7 @@
 
 
 #include <sstream>
-
+#include<string>
 
 namespace sf
 {
@@ -15,5 +15,6 @@ namespace sf
 void centerOrigin(sf::Sprite& sprite);
 void centerOrigin(sf::Text& text);
 
+void writeScoreToFile(std::string name, unsigned int score, sf::String filename);
 
 #endif // UTILITY_H_INCLUDED

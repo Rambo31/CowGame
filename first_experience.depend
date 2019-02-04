@@ -232,12 +232,12 @@
 
 1549100667 d:\sfml_projects\first_experience\include\stringhelpers.inl
 
-1549100667 d:\sfml_projects\first_experience\include\cow.h
+1549268968 d:\sfml_projects\first_experience\include\cow.h
 	<SFML/Graphics/Sprite.hpp>
 	<SFML/System/Time.hpp>
 	<SFML/System/String.hpp>
 
-1549106399 source:d:\sfml_projects\first_experience\src\cow.cpp
+1549268968 source:d:\sfml_projects\first_experience\src\cow.cpp
 	"Cow.h"
 
 1365229833 d:\sfml-2.0\include\sfml\graphics\rectangleshape.hpp
@@ -263,7 +263,7 @@
 	"ResourceIdentifiers.h"
 	"Cow.h"
 
-1549213763 d:\sfml_projects\first_experience\include\stateidentifiers.h
+1549273580 d:\sfml_projects\first_experience\include\stateidentifiers.h
 
 1549100667 d:\sfml_projects\first_experience\include\statestack.h
 	<SFML/System/NonCopyable.hpp>
@@ -283,7 +283,7 @@
 
 1549100667 d:\sfml_projects\first_experience\include\foreach.h
 
-1549189371 source:d:\sfml_projects\first_experience\src\gamestate.cpp
+1549270794 source:d:\sfml_projects\first_experience\src\gamestate.cpp
 	<cstdlib>
 	<ctime>
 	<SFML/Graphics/RectangleShape.hpp>
@@ -314,11 +314,12 @@
 	"Cow.h"
 	"StateStack.h"
 
-1549213810 source:d:\sfml_projects\first_experience\src\application.cpp
+1549273615 source:d:\sfml_projects\first_experience\src\application.cpp
 	"Application.h"
 	"GameState.h"
 	"TitleState.h"
 	"MenuState.h"
+	"BestScoresState.h"
 	"GameOverState.h"
 	"DataInputState.h"
 	"StringHelpers.h"
@@ -334,23 +335,26 @@
 	<SFML/Graphics/Text.hpp>
 	"State.h"
 
-1549107100 d:\sfml_projects\first_experience\include\utility.h
+1549270894 d:\sfml_projects\first_experience\include\utility.h
 	<sstream>
+	<string>
 
 1549106935 d:\sfml_projects\first_experience\include\utility.inl
 
-1549101887 source:d:\sfml_projects\first_experience\src\utility.cpp
+1549270894 source:d:\sfml_projects\first_experience\src\utility.cpp
 	<SFML/Graphics/Sprite.hpp>
 	<SFML/Graphics/Text.hpp>
 	"Utility.h"
 	<cmath>
+	<fstream>
+	<iostream>
 
-1549106344 d:\sfml_projects\first_experience\include\menustate.h
+1549271359 d:\sfml_projects\first_experience\include\menustate.h
 	<SFML/Graphics/Sprite.hpp>
 	<SFML/Graphics/Text.hpp>
 	"State.h"
 
-1549213987 source:d:\sfml_projects\first_experience\src\menustate.cpp
+1549273729 source:d:\sfml_projects\first_experience\src\menustate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
 	<SFML/Graphics/View.hpp>
 	"MenuState.h"
@@ -363,7 +367,7 @@
 	<SFML/Graphics/Text.hpp>
 	"State.h"
 
-1549187990 source:d:\sfml_projects\first_experience\src\gameoverstate.cpp
+1549270636 source:d:\sfml_projects\first_experience\src\gameoverstate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
 	"GameOverState.h"
 	"Utility.h"
@@ -374,9 +378,20 @@
 	<SFML/Graphics/Text.hpp>
 	"State.h"
 
-1549215998 source:d:\sfml_projects\first_experience\src\datainputstate.cpp
+1549271176 source:d:\sfml_projects\first_experience\src\datainputstate.cpp
 	<SFML/Graphics/RenderWindow.hpp>
+	<iostream>
 	"DataInputState.h"
+	"Utility.h"
+	"ResourceHolder.h"
+
+1549274407 d:\sfml_projects\first_experience\include\bestscoresstate.h
+	<SFML/Graphics/Text.hpp>
+	"State.h"
+
+1549273580 source:d:\sfml_projects\first_experience\src\bestscoresstate.cpp
+	<SFML/Graphics/RenderWindow.hpp>
+	"BestScoresState.h"
 	"Utility.h"
 	"ResourceHolder.h"
 

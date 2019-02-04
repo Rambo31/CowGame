@@ -2,6 +2,7 @@
 #include"GameState.h"
 #include"TitleState.h"
 #include"MenuState.h"
+#include"BestScoresState.h"
 #include"GameOverState.h"
 #include"DataInputState.h"
 #include "StringHelpers.h"
@@ -89,9 +90,11 @@ void Application::registerStates()
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<DataInputState>(States::DataInput);
 	mStateStack.registerState<MenuState>(States::Menu);
+	mStateStack.registerState<BestScoresState>(States::Scores);
 	mStateStack.registerState<GameState>(States::Game);
 	//mStateStack.registerState<PauseState>(States::Pause);
 	mStateStack.registerState<GameOverState>(States::GameOver);
+
 }
 
 

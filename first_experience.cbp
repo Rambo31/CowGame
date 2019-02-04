@@ -54,6 +54,7 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Application.h" />
 		<Unit filename="include/Cow.h" />
+		<Unit filename="include/DataInputState.h" />
 		<Unit filename="include/Flower.h" />
 		<Unit filename="include/Foreach.h" />
 		<Unit filename="include/GameOverState.h" />
@@ -72,6 +73,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Application.cpp" />
 		<Unit filename="src/Cow.cpp" />
+		<Unit filename="src/DataInputState.cpp" />
 		<Unit filename="src/Flower.cpp" />
 		<Unit filename="src/GameOverState.cpp" />
 		<Unit filename="src/GameState.cpp" />

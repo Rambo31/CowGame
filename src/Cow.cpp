@@ -17,6 +17,7 @@ Cow::Cow()
 , curFrame(0)
 , mTime()
 , mType()
+, mName()
 {
     //ctor
 }
@@ -38,6 +39,7 @@ Cow::Cow(CowType type)
 , curFrame(0)
 , mTime()
 , mType(type)
+, mName()
 {
     //ctor
 }
