@@ -20,6 +20,7 @@ class BestScoresState : public State
 
     private:
         void                sortResults();
+        bool                compareStrings(sf::String first, sf::String second);
 	private:
     std::vector<std::pair<sf::String, sf::String>> mData;
 	sf::Text                mNames;

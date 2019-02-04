@@ -7,3 +7,5 @@ funnyman1=4
 rat1=4
 nice0person=0
 faketaxi=14
+lucky2life=14
+ultra6jim=20

@@ -15,7 +15,7 @@ BestScoresState::BestScoresState(StateStack& stack, Context context)
 {
     readEntryFromFile(mData, "resources/Scores.txt");
 
-    //sortResults();
+    sortResults();
 
 
     mResults.setFont(context.fonts->get(Fonts::Sansation));
@@ -38,7 +38,9 @@ void BestScoresState::draw()
 	window.draw(mNames);
 	window.draw(mScores);
 
-	for (int i = 0; i < mData.size(); i++)
+	int mSize = (mData.size() > 8) ? 8 : mData.size();
+
+	for (int i = 0; i < mSize; i++)
     {
         mResults.setString(mData[i].first);
         centerOrigin(mResults);
@@ -74,27 +76,51 @@ bool BestScoresState::handleEvent(const sf::Event& event)
 
 void BestScoresState::sortResults()
 {
-    int mSize;
+    int mSize = mData.size();
 
     std::pair<sf::String, sf::String> mPair;
 
-    if(mData.size() > 8)
-    {
-        mSize = 8;
-    }
-    else
-    {
-        mSize = mData.size();
-    }
 
-
-    for(int i = 0; i < mSize - 1; i++)
+    for(int j = 1; j < mSize; j++)
     {
-        if(mData[i + 1].second > mData[i].second)
+        for(int i = 0; i < mSize - j; i++)
         {
-            mPair = mData[i];
-            mData[i] = mData[i + 1];
-            mData[i + 1] = mPair;
+            if(compareStrings(mData[i + 1].second, mData[i].second))
+            {
+
+                std::cout<<i<<std::endl;
+
+                mPair = mData[i];
+                mData[i] = mData[i + 1];
+                mData[i + 1] = mPair;
+            }
         }
     }
+}
+
+
+bool BestScoresState::compareStrings(sf::String first, sf::String second)
+{
+    if(first.getSize() > second.getSize())
+    {
+        return true;
+    }
+    else if(first.getSize() < second.getSize())
+    {
+        return false;
+    }
+
+    for(int i = 0; i < first.getSize(); i++)
+    {
+        if(first[i] > second[i])
+        {
+            return true;
+        }
+        else if(first[i] < second[i])
+        {
+            return false;
+        }
+    }
+
+    return false;
 }
